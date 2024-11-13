@@ -14,8 +14,8 @@ jobs:
   build:
     #runs-on: ubuntu-latest
     runs-on: 
-      #- codebuild-github-runner-${{ github.run_id }}-${{ github.run_attempt }}
-      - codebuild-test-project-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-github-runner-${{ github.run_id }}-${{ github.run_attempt }}
+      #- codebuild-test-project-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
