@@ -14,7 +14,7 @@ jobs:
   build:
     #runs-on: ubuntu-latest
     runs-on: 
-      - codebuild-github-runner-1-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-hithub-runner-${{ github.run_id }}-${{ github.run_attempt }}
       #- codebuild-test-project-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
