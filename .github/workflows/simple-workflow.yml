@@ -1,0 +1,27 @@
+# Simple workflow to demonstrate using AWS CodeBuild runner from GitHub Action
+name: Simple-Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 
+      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo Hello, world!
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+      - name: Run custom steps
+        run: |
+          pwd
+          id
+          ls -al
+          python --version
+  
