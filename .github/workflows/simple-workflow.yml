@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: 
       - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+      - buildspec-override:true
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
