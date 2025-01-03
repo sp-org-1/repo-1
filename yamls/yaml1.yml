@@ -1,0 +1,21 @@
+version: 0.2
+
+env:
+  parameter-store:
+    PAYLOAD: "/bbs2ghmigration/payload"
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - python ./migrate.py "$PAYLOAD"
+      - chmod +x ./migrate-helper.sh
+      - ./migrate-helper.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`
