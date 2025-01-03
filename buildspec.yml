@@ -8,6 +8,7 @@ phases:
   install:
     commands:
       - echo Entered the install phase...
+      -  dnf install yamllint
   pre_build:
     commands:
       - echo Entered the pre_build phase...
