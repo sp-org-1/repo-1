@@ -25,4 +25,5 @@ jobs:
           id
           ls -al
           python --version
+          sleep 60
   
