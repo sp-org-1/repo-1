@@ -25,5 +25,6 @@ jobs:
           id
           ls -al
           python --version
-          sleep 60
+          yamllint
+          //sleep 60
   
