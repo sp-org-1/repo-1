@@ -8,7 +8,7 @@ phases:
   install:
     commands:
       - echo Entered the install phase...
-      -  sudo dnf install yq
+      -  pip install --user yamllint
   pre_build:
     commands:
       - echo Entered the pre_build phase...
