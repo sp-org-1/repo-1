@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: 
-      - codebuild-test1-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
       - buildspec-override:true
     steps:
       - uses: actions/checkout@v4
