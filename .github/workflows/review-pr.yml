@@ -8,6 +8,10 @@ on:
 
 jobs:
   build:
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
     runs-on: 
       - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
       - buildspec-override:true
