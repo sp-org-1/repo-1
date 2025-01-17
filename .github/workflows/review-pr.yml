@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: sp-org-1/invoke-aws-bedrock-agent@2dfcd08c40335bc57e961d9b263c761ab459b257
+        uses: sp-org-1/invoke-aws-bedrock-agent@4cd58c2b7c5d91957c5229785abde1dce4c65445
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number "$RANDOM_NUMBER"
