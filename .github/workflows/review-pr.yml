@@ -14,7 +14,6 @@ jobs:
       pull-requests: write
     runs-on: 
       - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
-      - buildspec-override:true
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
@@ -23,16 +22,29 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: arn:aws:iam::291912718832:role/service-role/AmazonBedrockExecutionRoleForAgents_LS8YP3KXWPP
-      - name: Run custom steps
-        run: |
-          pwd
-          id
-          ls -al
-          python --version
-          /root/.local/bin/yamllint yamls
+      #- name: Configure AWS credentials
+      #  uses: aws-actions/configure-aws-credentials@v4
+      #  with:
+      #    aws-region: us-east-1
+      #    role-to-assume: arn:aws:iam::291912718832:role/service-role/AmazonBedrockExecutionRoleForAgents_LS8YP3KXWPP
+      #- name: Run custom steps
+      #  run: |
+      #    pwd
+      #    id
+      #    ls -al
+      #    python --version
+      #    /root/.local/bin/yamllint yamls
           #sleep 30
+  hello_world_job:
+    runs-on: 
+      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: foo
+        uses: sp-org-1/invoke-aws-bedrock-agent@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number "$RANDOM_NUMBER"
+        shell: bash
+        env:
+          RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
