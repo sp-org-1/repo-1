@@ -7,21 +7,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    permissions:
-      id-token: write
-      contents: read
-      pull-requests: write
-    runs-on: 
-      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  #build:
+  #  permissions:
+  #    id-token: write
+  #    contents: read
+  #    pull-requests: write
+  #  runs-on: 
+  #    - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+  #  steps:
+  #    - uses: actions/checkout@v4
+  #    - name: Run a one-line script
+  #      run: echo Hello, world!
+  #    - name: Run a multi-line script
+  #      run: |
+  #        echo Add other actions to build,
+  #        echo test, and deploy your project.
       #- name: Configure AWS credentials
       #  uses: aws-actions/configure-aws-credentials@v4
       #  with:
