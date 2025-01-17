@@ -19,6 +19,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::291912718832:role/service-role/AmazonBedrockExecutionRoleForAgents_LS8YP3KXWPP
       - name: Run custom steps
         run: |
           pwd
@@ -27,4 +32,3 @@ jobs:
           python --version
           /root/.local/bin/yamllint yamls
           #sleep 30
-  
