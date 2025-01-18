@@ -43,7 +43,7 @@ jobs:
         with:
           fetch-depth: 2
       - id: foo
-        uses: sp-org-1/invoke-aws-bedrock-agent@62926788d800202eb0c7010aac7bd44d1bf80f86
+        uses: sp-org-1/invoke-aws-bedrock-agent@2927cbba5471b286d4ada622a9d554e8da614645
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
