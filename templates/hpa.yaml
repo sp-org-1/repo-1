@@ -6,9 +6,7 @@ metadata:
   labels:
     {{- include "sp-helm-1.labels" . | nindent 4 }}
 spec:
-  -----------
   scaleTargetRef:
-  hhhhh
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "sp-helm-1.fullname" . }}
