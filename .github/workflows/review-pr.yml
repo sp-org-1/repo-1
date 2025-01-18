@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: sp-org-1/invoke-aws-bedrock-agent@f67ade02b873042e68636bd7722b529a26802c53
+        uses: sp-org-1/invoke-aws-bedrock-agent@424e5a5cfce66aed0fc7943ab6d831c74e9f4bdb
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
