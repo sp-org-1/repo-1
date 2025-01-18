@@ -23,7 +23,7 @@ spec:
     {{- end }}
     {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
     - type: Resource
-      resource:
+ #     resource:
         name: memory
         target:
           type: Utilization
