@@ -34,10 +34,10 @@ jobs:
       #    python --version
       #    /root/.local/bin/yamllint yamls
           #sleep 30
-  hello_world_job:
-    runs-on: ubuntu-latest
-    #runs-on: 
-      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+  invoke-agent:
+    #runs-on: ubuntu-latest
+    runs-on: 
+      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
         with:
