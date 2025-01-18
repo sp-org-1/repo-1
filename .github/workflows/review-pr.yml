@@ -2,7 +2,11 @@
 name: Review-PR
 
 on:
-  push:
+  pull_request:
+    branches:
+      - 'master'
+      - 'develop'
+      - 'releases/**'
   workflow_dispatch:
 
 jobs:
