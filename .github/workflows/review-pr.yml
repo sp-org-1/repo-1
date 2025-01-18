@@ -40,8 +40,10 @@ jobs:
       #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - id: foo
-        uses: sp-org-1/invoke-aws-bedrock-agent@f928500b6e79302d82b03ff64166dd2568828f94
+        uses: sp-org-1/invoke-aws-bedrock-agent@82374efb4224502cd0bb1d7d467290014023b514
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
