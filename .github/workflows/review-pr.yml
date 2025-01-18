@@ -46,6 +46,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      #- name: Invoke Agent
-      #  uses: sp-org-1/invoke-aws-bedrock-agent@e747d75ced13843c5c5df4d568e8bf59a91e876c
+      - name: Invoke Agent
+        uses: sp-org-1/invoke-aws-bedrock-agent@f40de552a1a96b5e67f09e50eb80c2c6f5cb4c20
 
