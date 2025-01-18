@@ -36,14 +36,15 @@ jobs:
       #    /root/.local/bin/yamllint yamls
           #sleep 30
   hello_world_job:
-    runs-on: 
-      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: ubuntu-latest
+    #runs-on: 
+      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
-      - id: foo
-        uses: sp-org-1/invoke-aws-bedrock-agent@ba904d4ba0cad0ee085b949955270e7234d0ab80
-        with:
-          who-to-greet: 'Mona the Octocat'
+      #- id: foo
+      #  uses: sp-org-1/invoke-aws-bedrock-agent@ba904d4ba0cad0ee085b949955270e7234d0ab80
+      #  with:
+      #    who-to-greet: 'Mona the Octocat'
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
