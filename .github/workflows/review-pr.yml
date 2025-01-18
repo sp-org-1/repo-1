@@ -47,7 +47,7 @@ jobs:
         with:
           fetch-depth: 2
       - name: Show PR details
-        run: echo ${{ github.ref_name}}
+        run: echo ${{ github.ref_name}} | cut -d '/' -f 1
       #- name: Invoke Agent
       #  uses: sp-org-1/invoke-aws-bedrock-agent@e747d75ced13843c5c5df4d568e8bf59a91e876c
 
