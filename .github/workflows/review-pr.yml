@@ -12,7 +12,7 @@ jobs:
   #    id-token: write
   #    contents: read
   #    pull-requests: write
-  #  runs-on: 
+  #  runs-on:
   #    - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
   #  steps:
   #    - uses: actions/checkout@v4
