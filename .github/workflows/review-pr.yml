@@ -3,7 +3,6 @@ name: Review-PR
 
 on:
   push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
