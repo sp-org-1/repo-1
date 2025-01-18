@@ -40,12 +40,8 @@ jobs:
       #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
-      #- id: foo
-      #  uses: sp-org-1/invoke-aws-bedrock-agent@ba904d4ba0cad0ee085b949955270e7234d0ab80
-      #  with:
-      #    who-to-greet: 'Mona the Octocat'
-      - name: echo message
-        run: echo ${{ github.sha }}
+      - id: foo
+        uses: sp-org-1/invoke-aws-bedrock-agent@228a760a14e655fef719512d1b1ec89cf14b8a7e
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
