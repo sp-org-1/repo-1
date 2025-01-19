@@ -43,9 +43,9 @@ jobs:
       contents: read
       pull-requests: read
       repository-projects: read
-    runs-on: ubuntu-latest
-    #runs-on: 
-      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+    #runs-on: ubuntu-latest
+    runs-on: 
+      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
         with:
