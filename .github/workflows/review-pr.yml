@@ -47,10 +47,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: Test
-        run: gh pr view 7
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
+      #- name: Test
+      #  run: gh pr view 7
+      #  shell: bash
+      #  env:
+      #    GH_TOKEN: ${{ github.token }}
       - name: Invoke Agent
-        uses: sp-org-1/invoke-aws-bedrock-agent@ce9df7eede15fb367c48ab6288a1fe845e1fbd7b
+        uses: sp-org-1/invoke-aws-bedrock-agent@a093584cc178f8dfaea325afd56df827a37eeb12
