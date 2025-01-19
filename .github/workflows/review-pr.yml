@@ -50,5 +50,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
+      - name: Test
+        run: gh pr list
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Invoke Agent
         uses: sp-org-1/invoke-aws-bedrock-agent@bc1bb7e5cd0e05806c71e96046bb07ffc5219bcb
