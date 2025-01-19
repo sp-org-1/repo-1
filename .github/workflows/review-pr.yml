@@ -8,10 +8,7 @@ on:
       - 'develop'
       - 'releases/**'
   workflow_dispatch:
-permissions:
-    contents: read
-    pull-requests: read
-    repository-projects: read
+permissions: write-all
 jobs:
   #build:
   #  permissions:
@@ -42,10 +39,7 @@ jobs:
       #    /root/.local/bin/yamllint yamls
           #sleep 30
   invoke-agent:
-    permissions:
-      contents: read
-      pull-requests: read
-      repository-projects: read
+    permissions: write-all
     runs-on: ubuntu-latest
     #runs-on: 
     #  - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
