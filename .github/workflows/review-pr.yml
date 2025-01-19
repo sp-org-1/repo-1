@@ -54,7 +54,8 @@ jobs:
         with:
           fetch-depth: 2
       - name: Test
-        run: gh pr list
+        run: gh pr view 7
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Invoke Agent
