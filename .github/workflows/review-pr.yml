@@ -51,4 +51,4 @@ jobs:
         with:
           fetch-depth: 2
       - name: Invoke Agent
-        uses: sp-org-1/invoke-aws-bedrock-agent@440911e459b470a1cd98c47a35d8d435194b5645
+        uses: sp-org-1/invoke-aws-bedrock-agent@710ceed019bc1c46c72b91b297713e426a08f733
