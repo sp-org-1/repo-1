@@ -39,6 +39,9 @@ jobs:
       #    /root/.local/bin/yamllint yamls
           #sleep 30
   invoke-agent:
+    permissions:
+      contents: read
+      pull-requests: read
     runs-on: ubuntu-latest
     #runs-on: 
       #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
