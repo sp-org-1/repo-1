@@ -1,5 +1,5 @@
 # Simple workflow to demonstrate using AWS CodeBuild runner from GitHub Action
-name: Simple-Workflow
+name: AWS-OIDC-Workflow
 
 on:
   workflow_dispatch:
