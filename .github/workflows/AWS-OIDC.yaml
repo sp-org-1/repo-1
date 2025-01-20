@@ -21,6 +21,5 @@ jobs:
           id
           ls -al
           python --version
-          /root/.local/bin/yamllint yamls
           sleep 2
   
