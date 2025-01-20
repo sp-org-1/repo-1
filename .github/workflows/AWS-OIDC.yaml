@@ -23,7 +23,7 @@ jobs:
           python --version
           sleep 2
       - name: configure aws credentials
-        uses: aws-action/configure-awscredentials@v4
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::291912718832:role/oidc-github-aws
           role-session-nam: GitHub-To-AWS-OIDC
