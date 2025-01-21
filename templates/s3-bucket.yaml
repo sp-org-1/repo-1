@@ -2,6 +2,8 @@ apiVersion: s3.services.k8s.aws/v1alpha1
 kind: Bucket
 metadata:
   name: sp-12345678
+  rerertrtertet
 spec:
   name: sp-12345678
+  value: ffff
 
