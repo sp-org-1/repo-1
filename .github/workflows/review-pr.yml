@@ -53,4 +53,4 @@ jobs:
       #  env:
       #    GH_TOKEN: ${{ github.token }}
       - name: Invoke Agent
-        uses: sp-org-1/invoke-aws-bedrock-agent@183a5cce71d1aeb867f14f867d92c9a587ca6695
+        uses: sp-org-1/invoke-aws-bedrock-agent@71e477dfd2a78fdd0be432d7e65619388cc3fcdc
