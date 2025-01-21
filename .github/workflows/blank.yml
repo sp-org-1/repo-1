@@ -9,9 +9,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    #runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     runs-on: 
-      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
       #- codebuild-test-project-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
