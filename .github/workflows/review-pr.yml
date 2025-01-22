@@ -32,8 +32,8 @@ jobs:
         uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
         with:
           change-type: 'Comment'
-      - name: Invoke Agent for PR
-        if: startsWith(github.ref, 'refs/pull/')
-        uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
-        with:
-          change-type: 'PR'
+      #- name: Invoke Agent for PR
+      #  if: startsWith(github.ref, 'refs/pull/')
+      #  uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
+      #  with:
+      #    change-type: 'PR'
