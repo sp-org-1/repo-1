@@ -1,9 +1,7 @@
 version: 0.2
-
 env:
   variables:
     VAR1: "val1"
-  
 phases:
   install:
     commands:
