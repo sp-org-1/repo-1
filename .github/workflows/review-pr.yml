@@ -1,7 +1,11 @@
-# Simple workflow to demonstrate using AWS CodeBuild runner from GitHub Action
-name: Review-PR
-
+# Workflow to review commit or PR using GenAI agent
+name: Review-Comment-PR
 on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'hotfix/**'
+      - 'bugfix/**'
   pull_request:
     branches:
       - 'master'
@@ -10,36 +14,7 @@ on:
   workflow_dispatch:
 permissions: write-all
 jobs:
-  #build:
-  #  permissions:
-  #    id-token: write
-  #    contents: read
-  #    pull-requests: write
-  #  runs-on:
-  #    - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
-  #  steps:
-  #    - uses: actions/checkout@v4
-  #    - name: Run a one-line script
-  #      run: echo Hello, world!
-  #    - name: Run a multi-line script
-  #      run: |
-  #        echo Add other actions to build,
-  #        echo test, and deploy your project.
-      #- name: Configure AWS credentials
-      #  uses: aws-actions/configure-aws-credentials@v4
-      #  with:
-      #    aws-region: us-east-1
-      #    role-to-assume: arn:aws:iam::291912718832:role/service-role/AmazonBedrockExecutionRoleForAgents_LS8YP3KXWPP
-      #- name: Run custom steps
-      #  run: |
-      #    pwd
-      #    id
-      #    ls -al
-      #    python --version
-      #    /root/.local/bin/yamllint yamls
-          #sleep 30
   invoke-agent:
-    permissions: write-all
     runs-on: ubuntu-latest
     #runs-on: 
       #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
@@ -47,12 +22,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      #- name: Test
-      #  run: gh pr view 7
-      #  shell: bash
-      #  env:
-      #    GH_TOKEN: ${{ github.token }}
-      - name: Invoke Agent
-        uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
-        with:
-          change-type: 'PR'
+      - name: Get change type
+        id: get-change-type
+        run: echo ${{ toJSON(github) }}
+      #- name: Invoke Agent
+      #  uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
+      #  with:
+      #    change-type: 'PR'
