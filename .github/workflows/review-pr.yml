@@ -26,7 +26,7 @@ jobs:
         id: get-change-type
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo ${{ GITHUB_CONTEXT }}
+        run: echo "${{ GITHUB_CONTEXT }}"
       #- name: Invoke Agent
       #  uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
       #  with:
