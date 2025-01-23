@@ -29,11 +29,11 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Invoke Agent for Commit
         if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'skip-review')
-        uses: sp-org-1/invoke-aws-bedrock-agent@f28b5f9aebda7bb1c35cff617fd43b289d305998
+        uses: sp-org-1/invoke-aws-bedrock-agent@ce4605e4f51d1d041b81a85d9417e3fdcbb8c2cf
         with:
           change-type: 'Comment'
       - name: Invoke Agent for PR
         if: startsWith(github.ref, 'refs/pull/')
-        uses: sp-org-1/invoke-aws-bedrock-agent@f28b5f9aebda7bb1c35cff617fd43b289d305998
+        uses: sp-org-1/invoke-aws-bedrock-agent@ce4605e4f51d1d041b81a85d9417e3fdcbb8c2cf
         with:
           change-type: 'PR'
