@@ -28,7 +28,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Invoke Agent for Commit
-        if: github.event_name == 'push' && contains(github.event.head_commit.message, 'complex')
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'skip-review')
         uses: sp-org-1/invoke-aws-bedrock-agent@f28b5f9aebda7bb1c35cff617fd43b289d305998
         with:
           change-type: 'Comment'
