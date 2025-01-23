@@ -37,3 +37,4 @@ jobs:
         uses: sp-org-1/invoke-aws-bedrock-agent@53274093a9a8d20ee38715ac93219ffc2005802d
         with:
           change-type: 'PR'
+
