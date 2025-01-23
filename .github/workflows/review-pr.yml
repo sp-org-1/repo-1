@@ -28,8 +28,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Invoke Agent for Commit
-        if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'skip-review')
-        uses: sp-org-1/invoke-aws-bedrock-agent@ce4605e4f51d1d041b81a85d9417e3fdcbb8c2cf
+        if: github.event_name == 'push' && github.event.created == 'false' && !contains(github.event.head_commit.message, 'skip-review')
+        uses: sp-org-1/invoke-aws-bedrock-agent@f6d25fc7ed4a0ae66ecfd2725e723c0c3b04e683
         with:
           change-type: 'Comment'
       - name: Invoke Agent for PR
