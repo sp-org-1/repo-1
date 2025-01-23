@@ -17,6 +17,8 @@ spec:
     - type: Resource
       resource:
         name: cpu
+        sdsdsf
+        value  : "sdf"""
         target:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
