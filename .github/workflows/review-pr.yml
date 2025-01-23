@@ -15,9 +15,9 @@ on:
 permissions: write-all
 jobs:
   invoke-agent:
-    runs-on: ubuntu-latest
-    #runs-on: 
-      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
+    #runs-on: ubuntu-latest
+    runs-on: 
+      - codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,12 +28,12 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Invoke Agent for Commit
-        if: startsWith(github.ref, 'refs/heads/')
-        uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, 'complex')
+        uses: sp-org-1/invoke-aws-bedrock-agent@53274093a9a8d20ee38715ac93219ffc2005802d
         with:
           change-type: 'Comment'
-      #- name: Invoke Agent for PR
-      #  if: startsWith(github.ref, 'refs/pull/')
-      #  uses: sp-org-1/invoke-aws-bedrock-agent@c61363fc98a7d040d4b0e26b40eae0a813585f23
-      #  with:
-      #    change-type: 'PR'
+      - name: Invoke Agent for PR
+        if: startsWith(github.ref, 'refs/pull/')
+        uses: sp-org-1/invoke-aws-bedrock-agent@53274093a9a8d20ee38715ac93219ffc2005802d
+        with:
+          change-type: 'PR'
