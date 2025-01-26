@@ -28,12 +28,12 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Invoke Agent for Commit
-        if: github.event_name == 'push' && github.event.created == 'false' && !contains(github.event.head_commit.message, 'skip-review')
-        uses: sp-org-1/invoke-aws-bedrock-agent@2341c2745dddb885431bb52618cf76c87e952dd3
+        if: github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review')
+        uses: sp-org-1/invoke-aws-bedrock-agent@e32fb0abe368007d7ece45b402fc1e7b2a87ea47
         with:
           change-type: 'Comment'
       - name: Invoke Agent for PR
-        if: startsWith(github.ref, 'refs/pull/')
-        uses: sp-org-1/invoke-aws-bedrock-agent@2341c2745dddb885431bb52618cf76c87e952dd3
+        if: github.event_name == 'pull_request'
+        uses: sp-org-1/invoke-aws-bedrock-agent@e32fb0abe368007d7ece45b402fc1e7b2a87ea47
         with:
           change-type: 'PR'
