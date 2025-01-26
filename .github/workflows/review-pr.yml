@@ -22,11 +22,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: Get change type
-        id: get-change-type
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Invoke Agent for Commit
         if: github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review')
         uses: sp-org-1/invoke-aws-bedrock-agent@v1
