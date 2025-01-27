@@ -25,3 +25,7 @@ steps:
     scannerMode: 'cli'
     projectKey: 'Project-Agile'
     projectName: 'Project-Agile'
+
+- task: SonarCloudPublish@3
+  inputs:
+    pollingTimeoutSec: '300'
