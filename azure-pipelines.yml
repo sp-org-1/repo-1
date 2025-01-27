@@ -22,6 +22,6 @@ steps:
   inputs:
     SonarCloud: 'sonarcloud'
     organization: 'santoshjpawar'
-    scannerMode: 'yaml'
+    scannerMode: 'cli'
     projectKey: 'Project-Agile'
     projectName: 'Project-Agile'
