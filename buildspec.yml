@@ -1,11 +1,10 @@
 version: 0.2
 env:
   variables:
-    VAR1: "val1"
+    VAR1: "val2"
 phases:
   install:
     commands:
-    sddsf fsfd
       - echo Entered the install phase...
       -  pip install --user yamllint
   pre_build:
@@ -15,4 +14,3 @@ phases:
     commands:
       - echo Entered the post_build phase...
       - echo Build completed on `date`
-  name: buildspec
