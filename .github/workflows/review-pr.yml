@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 2
       - name: "Test1"
-        run: echo $PR_REVIEW_AGENT_ID
+        run: echo ${{ vars.PR_REVIEW_AGENT_ID }}
       - name: Invoke Agent for Commit
         if: github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review')
         uses: sp-org-1/invoke-aws-bedrock-agent@f58d6035c281f750d0884659cd2d50ae7c8f1371
