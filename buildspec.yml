@@ -4,6 +4,7 @@ env:
     VAR1: "val1"
 phases:
   install:
+  gggg
     commands:
       - echo Entered the install phase...
       -  pip install --user yamllint
@@ -14,3 +15,4 @@ phases:
     commands:
       - echo Entered the post_build phase...
       - echo Build completed on `date`
+name: name1
