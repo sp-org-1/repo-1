@@ -24,11 +24,17 @@ jobs:
           fetch-depth: 2
       - name: Invoke Agent for Commit
         if: github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review')
-        uses: sp-org-1/invoke-aws-bedrock-agent@f081bf58d04746a3069864abc0468a90f7644a18
+        uses: sp-org-1/invoke-aws-bedrock-agent@v1
+        env:
+          PR_REVIEW_AGENT_ID: ${{ env.PR_REVIEW_AGENT_ID }}
+          PR_REVIEW_AGENT_ALIAS_ID: ${{ env.PR_REVIEW_AGENT_ALIAS_ID }}
         with:
           change-type: 'Comment'
       - name: Invoke Agent for PR
         if: github.event_name == 'pull_request'
-        uses: sp-org-1/invoke-aws-bedrock-agent@f081bf58d04746a3069864abc0468a90f7644a18
+        uses: sp-org-1/invoke-aws-bedrock-agent@v1
+        env:
+          PR_REVIEW_AGENT_ID: ${{ env.PR_REVIEW_AGENT_ID }}
+          PR_REVIEW_AGENT_ALIAS_ID: ${{ env.PR_REVIEW_AGENT_ALIAS_ID }}
         with:
           change-type: 'PR'
