@@ -31,14 +31,6 @@ jobs:
           PR_REVIEW_AGENT_ID: ${{ vars.PR_REVIEW_AGENT_ID }}
           PR_REVIEW_AGENT_ALIAS_ID: ${{ vars.PR_REVIEW_AGENT_ALIAS_ID }}
         with:
-          change-type: 'Comment'
+          change-type: ${{ github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review') && 'Comment' || 'PR' }}
           debug: ${{ env.DEBUG }}
-      - name: Invoke Agent for PR
-        if: github.event_name == 'pull_request'
-        uses: sp-org-1/invoke-aws-bedrock-agent@v1
-        env:
-          PR_REVIEW_AGENT_ID: ${{ vars.PR_REVIEW_AGENT_ID }}
-          PR_REVIEW_AGENT_ALIAS_ID: ${{ vars.PR_REVIEW_AGENT_ALIAS_ID }}
-        with:
-          change-type: 'PR'
-          debug: ${{ env.DEBUG }}
+      
