@@ -11,4 +11,6 @@ jobs:
         uses: sp-org-1/javascript-action@main
         with:
           person: 'Pawar'
+        env:
+          VAR: value
         
