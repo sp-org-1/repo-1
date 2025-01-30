@@ -1,16 +1,16 @@
 # Workflow to review commit or PR using GenAI agent
 name: Review-Comment-PR
 on:
-  push:
-    branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'bugfix/**'
-  pull_request:
-    branches:
-      - 'master'
-      - 'develop'
-      - 'releases/**'
+  #push:
+  #  branches:
+  #    - 'feature/**'
+  #    - 'hotfix/**'
+  #    - 'bugfix/**'
+  #pull_request:
+  #  branches:
+  #    - 'master'
+  #    - 'develop'
+  #    - 'releases/**'
   workflow_dispatch:
 permissions: write-all
 env:
