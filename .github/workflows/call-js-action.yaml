@@ -8,5 +8,5 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: sp-org/javascript-action@main
+        uses: sp-org-1/javascript-action@main
         
