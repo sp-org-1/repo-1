@@ -30,6 +30,6 @@ jobs:
           PR_REVIEW_AGENT_ID: ${{ vars.PR_REVIEW_AGENT_ID }}
           PR_REVIEW_AGENT_ALIAS_ID: ${{ vars.PR_REVIEW_AGENT_ALIAS_ID }}
         with:
-          change-type: ${{ github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review') && 'Comment' || 'PR' }}
+          change-type: ${{ github.event_name == 'push' && github.event.created == false && !contains(github.event.head_commit.message, 'skip-review') && 'Commit' || 'PR' }}
           debug: ${{ env.DEBUG }}
       
