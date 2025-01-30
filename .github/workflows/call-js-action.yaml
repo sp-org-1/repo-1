@@ -9,4 +9,6 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: sp-org-1/javascript-action@main
+        with:
+          person: 'Pawar'
         
