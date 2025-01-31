@@ -9,7 +9,7 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/{owner}/{repo}/releases/tag1
+          route: GET /repos/${{ github.repository }}/releases/tag1
           owner: octokit
           repo: request-action
         env:
