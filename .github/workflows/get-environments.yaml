@@ -1,0 +1,10 @@
+name: Get environments
+on: 
+  workflow_dispatch: 
+  workflow_call:
+jobs:
+  get_envs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get env list
+        run: echo "Hello"
