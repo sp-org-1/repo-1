@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        #environment: [dev, stage]
-        environment:${{ fromJson(needs.get_envs.outputs.names) }}
+        environment: [dev, stage]
+        #environment:${{ fromJson(needs.get_envs.outputs.names) }}
     environment:
       name: ${{ matrix.environment }}
     steps:
