@@ -3,7 +3,7 @@ on:
   workflow_dispatch: 
 jobs:
   get-envs:
-    uses: .github/workflow/get-environments.yaml@master
+    uses: ./.github/workflows/get-environments.yaml@master
   deploy:
     runs-on: ubuntu-latest
     strategy:
