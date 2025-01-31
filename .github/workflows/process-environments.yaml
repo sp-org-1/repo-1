@@ -2,6 +2,10 @@ name: Process environments
 on: 
   workflow_dispatch: 
 jobs:
+  get-envs:
+    id: get-envs
+    uses: ./.github/workflow/get-environments.yaml
+    
   deploy:
     runs-on: ubuntu-latest
     strategy:
