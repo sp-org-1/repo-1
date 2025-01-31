@@ -3,10 +3,12 @@ on:
   workflow_dispatch: 
   workflow_call:
     outputs:
-      names: ${{ steps.set_env.outputs.names }}
+      names: ${{ jobs.get_envs.outputs.names }}
 jobs:
   get_envs:
     runs-on: ubuntu-latest
+    outputs:
+      names: ${{ steps.set_env.outputs.names }}
     steps:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
