@@ -3,7 +3,7 @@ on:
   workflow_dispatch: 
   workflow_call:
     outputs:
-      names: 
+      environments: 
         description: "Environment names"
         value: '${{ jobs.get_envs.outputs.names }}'
 jobs:
