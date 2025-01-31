@@ -15,6 +15,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set output
         id: set_env
-        run: echo "names=$(echo $NAMES | jq -c '[.[] | select(startswith("[${{ github.ref_name }}]"))]' -j)"
-        env:
-          NAMES: ${{ toJson(fromJson(steps.get_env.outputs.data).environments.*.name) }}
+        run: echo ${{ steps.get_env.outputs.data }}
+      
