@@ -2,6 +2,8 @@ name: Get environments
 on: 
   workflow_dispatch: 
   workflow_call:
+    outputs:
+      names: ${{ steps.set_env.outputs.names }}
 jobs:
   get_envs:
     runs-on: ubuntu-latest
@@ -15,5 +17,7 @@ jobs:
       - run: "echo latest release: '${{ steps.get_latest_release.outputs.data }}'"
       - name: Set output
         id: set_env
-        run: echo "${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}"
+        run: echo "names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}" >> $GITHUB_OUTPUT
+      - name: Check outout
+        run: cat $GITHUB_OUTPUT
   
