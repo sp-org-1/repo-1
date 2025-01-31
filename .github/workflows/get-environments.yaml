@@ -6,15 +6,12 @@ jobs:
   get_envs:
     runs-on: ubuntu-latest
     steps:
-      - name: Get environments
-        uses: octokit/request-action@v2.3.0
-        id: get_env
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
         with:
-          route: GET /repos/${{ github.repository }}/environments?per_page=100 # If we ever have >100 deployments, we'll need to paginate
+          route: GET /repos/{owner}/{repo}/releases/tag1
+          owner: octokit
+          repo: request-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set output
-        id: set_env
-        run: |
-          echo ${{ steps.get_env.outputs.data }}
-      
+      - run: "echo latest release: '${{ steps.get_latest_release.outputs.data }}'"
