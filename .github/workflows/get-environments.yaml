@@ -10,7 +10,7 @@ jobs:
   get_envs:
     runs-on: ubuntu-latest
     outputs:
-      names: ${{ steps.set_env.outputs.names }}
+      names: ${{ steps.setenv.outputs.names }}
     steps:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: "echo latest release: '${{ steps.get_latest_release.outputs.data }}'"
       - name: Set output
-        id: set_env
+        id: setenv
         #run: echo 'names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' | tr -d '\n'  >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
         run: echo 'names=dev,stage' >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
   print-envs:
