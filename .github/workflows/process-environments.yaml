@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: get-envs
     steps:
-      - run: echo "${{ needs.get_envs.outputs.names }}"
+      - run: echo "${{ needs.get_envs.outputs.environments }}"
   deploy:
     runs-on: ubuntu-latest
     needs: get-envs
     strategy:
       matrix:
         environment: [dev, stage]
-        #environment:${{ fromJson(needs.get_envs.outputs.names) }}
+        #environment:${{ fromJson(needs.get_envs.outputs.environments) }}
     environment:
       name: ${{ matrix.environment }}
     steps:
