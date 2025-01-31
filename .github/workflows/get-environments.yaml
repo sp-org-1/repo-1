@@ -16,3 +16,14 @@ jobs:
       - name: Set output
         id: set_env
         run: echo "${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}"
+  deploy:
+    needs:
+      - get_envs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, stage]
+    environment:
+      name: ${{ matrix.environment }}
+    steps:
+      - run: echo "${{ vars.ENV_VAR }}"
