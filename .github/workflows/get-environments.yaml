@@ -3,7 +3,9 @@ on:
   workflow_dispatch: 
   workflow_call:
     outputs:
-      names: ${{ jobs.get_envs.outputs.names }}
+      names: 
+        description: "Environment names"
+        value: ${{ jobs.get_envs.outputs.names }}
 jobs:
   get_envs:
     runs-on: ubuntu-latest
