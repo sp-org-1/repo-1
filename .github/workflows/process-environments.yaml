@@ -1,0 +1,14 @@
+name: Process environments
+on: 
+  workflow_dispatch: 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        #environment: [dev, stage]
+        environment:${{ fromJson(needs.get_envs.outputs.names) }}
+    environment:
+      name: ${{ matrix.environment }}
+    steps:
+      - run: echo "${{ vars.ENV_VAR }}"
