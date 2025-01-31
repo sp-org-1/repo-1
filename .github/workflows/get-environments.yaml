@@ -1,6 +1,6 @@
 name: Get environments
 on: 
-  #workflow_dispatch: 
+  workflow_dispatch: 
   workflow_call:
     outputs:
       names: 
