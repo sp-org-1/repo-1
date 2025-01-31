@@ -22,7 +22,7 @@ jobs:
       - name: Set output
         id: set_env
         #run: echo "names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}"# >> $GITHUB_OUTPUT
-        run: echo '${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' >> $GITHUB_OUTPUT
-      - name: Check outout
-        run: cat $GITHUB_OUTPUT
+        run: echo '${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' | jq . >> $GITHUB_OUTPUT
+      #- name: Check outout
+      #  run: cat $GITHUB_OUTPUT
   
