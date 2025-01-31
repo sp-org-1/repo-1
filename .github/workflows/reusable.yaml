@@ -1,3 +1,4 @@
+name: Reusable doc
 on:
   workflow_dispatch:
   workflow_call:
