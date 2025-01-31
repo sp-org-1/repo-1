@@ -15,4 +15,4 @@ jobs:
       - run: "echo latest release: '${{ steps.get_latest_release.outputs.data }}'"
       - name: Set output
         id: set_env
-        run: echo "${{ steps..get_latest_release.outputs.data }}"
+        run: echo "${{ steps.get_latest_release.outputs.data }}"
