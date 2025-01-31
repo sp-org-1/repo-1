@@ -15,5 +15,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set output
         id: set_env
-        run: echo ${{ steps.get_env.outputs.data }}
+        run: |
+          echo ${{ steps.get_env.outputs.data }}
       
