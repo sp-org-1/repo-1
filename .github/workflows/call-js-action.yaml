@@ -1,6 +1,12 @@
 name: Call-JS-Action
 on:
   workflow_dispatch:
+    inputs:
+      use-emoji:
+        type: boolean
+        description: 'Include emoji or not'
+        required: true
+        default: false
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
