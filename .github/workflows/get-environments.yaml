@@ -5,7 +5,7 @@ on:
     outputs:
       names: 
         description: "Environment names"
-        value: ${{ jobs.get_envs.outputs.names }}
+        value: '${{ jobs.get_envs.outputs.names }}'
 jobs:
   get_envs:
     runs-on: ubuntu-latest
