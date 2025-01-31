@@ -2,8 +2,8 @@ name: Process environments
 on: 
   workflow_dispatch: 
 jobs:
-  get-envs:
-    uses: ./.github/workflows/get-environments.yaml@master
+  #get-envs:
+  #  uses: ./.github/workflows/get-environments.yaml@master
   deploy:
     runs-on: ubuntu-latest
     strategy:
