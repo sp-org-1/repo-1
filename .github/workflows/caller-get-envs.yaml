@@ -5,7 +5,7 @@ on:
 
 jobs:
   get-environments:
-    uses: sp-org-1/repo-1/.github/workflows/reusable.yaml@master
+    uses: sp-org-1/repo-1/.github/workflows/reusable-get-envs.yaml@master
   deploy:
     runs-on: ubuntu-latest
     needs: get-environments
