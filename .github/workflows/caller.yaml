@@ -5,7 +5,7 @@ on:
 
 jobs:
   job1:
-    uses: sp-org-1/repo-1/.github/workflows/reusable.yml@master
+    uses: sp-org-1/repo-1/.github/workflows/reusable.yaml@master
 
   job2:
     runs-on: ubuntu-latest
