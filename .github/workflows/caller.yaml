@@ -11,7 +11,7 @@ jobs:
     needs: get-environments
     strategy:
       matrix:
-        environment: ${{ fromJson(needs.get-environments.outputs.names) }}
+        environment: ${{ fromJson(needs.get-environments.outputs.envs) }}
     environment:
       name: ${{ matrix.environment }}
     steps:
