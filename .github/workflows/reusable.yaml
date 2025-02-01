@@ -1,4 +1,4 @@
-name: Reusable doc
+name: Reusable-Get-Environments
 on:
   workflow_dispatch:
   workflow_call:
