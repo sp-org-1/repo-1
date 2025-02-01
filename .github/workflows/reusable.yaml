@@ -16,7 +16,7 @@ on:
         value: ${{ jobs.example_job.outputs.output2 }}
       names:
         description: "The second output string"
-        value: ${{ jobs.example_job.outputs.output2 }}
+        value: ${{ jobs.example_job.outputs.output0 }}
 jobs:
   example_job:
     name: Generate output
@@ -25,6 +25,7 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
+      output0: ${{ steps.step0.outputs.names }}
     steps:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
@@ -33,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set output
-        id: setenv
+        id: step0
         #run: echo 'names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' | tr -d '\n'  >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
         run: echo 'names=dev,stage' >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
       - id: step1
