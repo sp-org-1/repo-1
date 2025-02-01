@@ -35,8 +35,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set output
         id: step0
-        #run: echo 'names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' | tr -d '\n'  >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
-        run: echo 'names=dev,stage' >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
+        run: echo 'names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' | tr -d '\n'  >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
+        #run: echo 'names=dev,stage' >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
       - id: step1
         run: echo "firstword=hello" >> $GITHUB_OUTPUT
       - id: step2
