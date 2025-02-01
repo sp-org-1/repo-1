@@ -2,30 +2,17 @@ name: Reusable doc
 on:
   workflow_dispatch:
   workflow_call:
-    inputs:
-      config-path:
-        required: false
-        type: string
-    # Map the workflow outputs to job outputs
     outputs:
-      firstword:
-        description: "The first output string"
-        value: ${{ jobs.example_job.outputs.output1 }}
-      secondword:
+      envs:
         description: "The second output string"
-        value: ${{ jobs.example_job.outputs.output2 }}
-      names:
-        description: "The second output string"
-        value: ${{ jobs.example_job.outputs.output0 }}
+        value: ${{ jobs.get-environments.outputs.output0 }}
 jobs:
-  example_job:
+  get-environments:
     name: Generate output
     runs-on: ubuntu-latest
     # Map the job outputs to step outputs
     outputs:
-      output1: ${{ steps.step1.outputs.firstword }}
-      output2: ${{ steps.step2.outputs.secondword }}
-      output0: ${{ steps.step0.outputs.names }}
+      envs: ${{ steps.set-output.outputs.names }}
     steps:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
@@ -34,10 +21,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set output
-        id: step0
+        id: set-output
         run: echo 'names=${{ toJson(fromJson(steps.get_latest_release.outputs.data).environments.*.name) }}' | tr -d '\n'  >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
-        #run: echo 'names=dev,stage' >> $GITHUB_OUTPUT; cat $GITHUB_OUTPUT
-      - id: step1
-        run: echo "firstword=hello" >> $GITHUB_OUTPUT
-      - id: step2
-        run: echo "secondword=world" >> $GITHUB_OUTPUT
+        
