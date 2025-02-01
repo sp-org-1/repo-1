@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         #environment: [dev, stage]
-        environment:${{ fromJson(needs.job1.outputs.names) }}
+        environment: ${{ needs.job1.outputs.names }}
     environment:
       name: ${{ matrix.environment }}
     steps:
