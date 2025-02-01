@@ -5,7 +5,7 @@ on:
     outputs:
       envs:
         description: "The second output string"
-        value: ${{ jobs.get-environments.outputs.output0 }}
+        value: ${{ jobs.get-environments.outputs.envs }}
 jobs:
   get-environments:
     name: Generate output
