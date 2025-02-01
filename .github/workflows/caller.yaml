@@ -1,22 +1,16 @@
-name: Caller
+name: Caller-Get-Environments
 
 on:
   workflow_dispatch:
 
 jobs:
-  job1:
+  get-environments:
     uses: sp-org-1/repo-1/.github/workflows/reusable.yaml@master
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }} ${{ needs.job1.outputs.names }}
   deploy:
     runs-on: ubuntu-latest
-    needs: job1
+    needs: get-environments
     strategy:
       matrix:
-        #environment: [dev, stage]
         environment: ${{ fromJson(needs.job1.outputs.names) }}
     environment:
       name: ${{ matrix.environment }}
