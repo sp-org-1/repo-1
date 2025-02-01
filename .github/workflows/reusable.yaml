@@ -14,6 +14,9 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.example_job.outputs.output2 }}
+      names:
+        description: "The second output string"
+        value: ${{ jobs.example_job.outputs.output2 }}
 jobs:
   example_job:
     name: Generate output
