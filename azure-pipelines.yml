@@ -15,13 +15,21 @@ stages:
     jobs:
       - job: Linting
         steps:
-        - script: echo Hello, world!
+        - script: echo Hello, lint!
           displayName: 'Run a one-line script here'
 
         - script: |
             echo Add other tasks to build, test, and deploy your project.
             echo See https://aka.ms/yaml
           displayName: 'Run a multi-line script'
+
+  - stage: Build
+    displayName: Build code
+    jobs:
+      - job: Building
+        steps:
+        - script: echo Hello, build!
+          displayName: 'Run a one-line script here'
 
 #- task: SonarCloudPrepare@3
 #  inputs:
