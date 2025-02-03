@@ -16,7 +16,7 @@ stages:
       - job: Linting
         steps:
         - script: echo Hello, lint!
-          displayName: 'Run a one-line script here'
+          displayName: 'Run lint'
 
         - script: |
             echo Add other tasks to build, test, and deploy your project.
@@ -29,7 +29,15 @@ stages:
       - job: Building
         steps:
         - script: echo Hello, build!
-          displayName: 'Run a one-line script here'
+          displayName: 'Run build'
+
+  - stage: Deploy
+    displayName: Deploy code
+    jobs:
+      - job: Deploying
+        steps:
+        - script: echo Hello, deploy!
+          displayName: 'Run deploy'
 
 #- task: SonarCloudPrepare@3
 #  inputs:
