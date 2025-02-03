@@ -9,23 +9,28 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script here'
+stages:
+  - stage: Lint
+    displayName: Format and lint code
+    jobs:
+      - job: Linting
+        steps:
+        - script: echo Hello, world!
+          displayName: 'Run a one-line script here'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+        - script: |
+            echo Add other tasks to build, test, and deploy your project.
+            echo See https://aka.ms/yaml
+          displayName: 'Run a multi-line script'
 
-- task: SonarCloudPrepare@3
-  inputs:
-    SonarCloud: 'sonarcloud'
-    organization: 'santoshjpawar'
-    scannerMode: 'cli'
-    projectKey: 'Project-Agile'
-    projectName: 'Project-Agile'
+#- task: SonarCloudPrepare@3
+#  inputs:
+#    SonarCloud: 'sonarcloud'
+#    organization: 'santoshjpawar'
+#    scannerMode: 'cli'
+#    projectKey: 'Project-Agile'
+#    projectName: 'Project-Agile'
 
-- task: SonarCloudPublish@3
-  inputs:
-    pollingTimeoutSec: '300'
+#- task: SonarCloudPublish@3
+#  inputs:
+#    pollingTimeoutSec: '300'
