@@ -6,10 +6,12 @@ on:
     outputs:
       value:
         description: Secret value
-        value: ${{ env.MY_SECRET }}
+        value: ${{ jobs.vault.outputs.value }}
 jobs:
   vault:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    outputs:
+      value: ${{ steps.get-secret.oututs.value }}
     steps:
       - uses: 'hashicorp/hcp-auth-action@v0'
         with:
@@ -19,10 +21,11 @@ jobs:
         with:
           version: 'latest'
       - name: 'Read a secret and inject as an environment variable'
+        id: get-secret
         run: |
-          MY_SECRET=$(hcp vault-secrets secrets open \
+          VALUE=$(hcp vault-secrets secrets open \
             --app=WebApp --format=json apppassword | jq -r '.static_version.value')
-          echo $MY_SECRET
-          echo "::add-mask::$MY_SECRET"
-          echo "MY_SECRET=$MY_SECRET" >> $GITHUB_ENV
+          echo $VALUE
+          echo "::add-mask::$VALUE"
+          echo "value=$VALUE" >> $GITHUB_OUTPUT
   
