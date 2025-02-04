@@ -7,9 +7,9 @@ on:
       environment:
         required: true
         type: choice
-        default: dev
+        default: ''
         options:
-          - sandbox
+          - ''
           - dev
           - qa
           - select
