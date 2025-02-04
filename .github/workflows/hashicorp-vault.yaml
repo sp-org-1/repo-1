@@ -25,8 +25,8 @@ jobs:
     steps:
       - uses: 'hashicorp/hcp-auth-action@v0'
         with:
-          client_id: ${{ inputs.client_id }}
-          client_secret: ${{ inputs.client_secret }}
+          client_id: ${{ secrets.client_id }}
+          client_secret: ${{ secrets.client_secret }}
       - uses: 'hashicorp/hcp-setup-action@v0'
         with:
           version: 'latest'
