@@ -4,26 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest 
-      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
-      #- buildspec-override:true
-    steps:
-      - uses: actions/checkout@v4
-      - name: Get runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJSON(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Get github context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
   vault:
     runs-on: ubuntu-latest 
     steps:
