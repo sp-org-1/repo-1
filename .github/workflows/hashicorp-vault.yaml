@@ -1,12 +1,5 @@
 name: Hashicorp-Vault-Get-Creds
-
 on:
-  workflow_dispatch:
-    inputs:
-      client_id:
-        required: true
-      client_secret:
-        required: true
   workflow_call:
     secrets:
       client_id:
