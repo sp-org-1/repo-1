@@ -1,11 +1,11 @@
 name: Hashicorp-Vault-Get-Creds
 on:
   workflow_call:
-    secrets:
-      client_id:
-        required: true
-      client_secret:
-        required: true
+    #secrets:
+    #  client_id:
+    #    required: true
+    #  client_secret:
+    #    required: true
     outputs:
       value:
         description: Secret value
@@ -18,8 +18,10 @@ jobs:
     steps:
       - uses: 'hashicorp/hcp-auth-action@v0'
         with:
-          client_id: ${{ secrets.client_id }}
-          client_secret: ${{ secrets.client_secret }}
+          #client_id: ${{ secrets.client_id }}
+          #client_secret: ${{ secrets.client_secret }}
+          client_id: ${{ secrets.HCP_CLIENT_ID }}
+          client_secret: ${{ secrets.HCP_CLIENT_SECRET }}
       - uses: 'hashicorp/hcp-setup-action@v0'
         with:
           version: 'latest'
