@@ -8,7 +8,7 @@ jobs:
     uses: sp-org-1/repo-1/.github/workflows/hashicorp-vault.yaml@master
     secrets: inherit
     with:
-      key: dppassword
+      key: dbpassword
   deploy:
     runs-on: ubuntu-latest
     needs: get-secret
