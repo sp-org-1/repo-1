@@ -30,6 +30,4 @@ jobs:
             --app=WebApp --format=json ${{ inputs.key }} | jq -r '.static_version.value')
           echo $VALUE
           echo "value=$VALUE" >> $GITHUB_OUTPUT
-      - name: Test
-        run: echo ${{ steps.get-secret.outputs.value }}
   
