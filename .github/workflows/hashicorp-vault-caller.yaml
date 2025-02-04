@@ -7,6 +7,8 @@ jobs:
   get-secret:
     uses: sp-org-1/repo-1/.github/workflows/hashicorp-vault.yaml@master
     secrets: inherit
+    with:
+      key: apppassword
     #secrets:
     #  client_id: ${{ secrets.HCP_CLIENT_ID }}
     #  client_secret: ${{ secrets.HCP_CLIENT_SECRET }}
