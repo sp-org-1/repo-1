@@ -31,4 +31,6 @@ jobs:
           echo $VALUE
           echo "::add-mask::$VALUE"
           echo "value=$VALUE" >> $GITHUB_OUTPUT
+      - name: Test
+        run: echo ${{ steps.get-secret.outputs.value }}
   
