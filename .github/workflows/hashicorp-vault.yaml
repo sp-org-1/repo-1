@@ -18,6 +18,7 @@ jobs:
         run: |
           MY_SECRET=$(hcp vault-secrets secrets open \
             --app=WebApp --format=json apppassword | jq -r '.static_version.value')
+          echo $MY_SECRET
           echo "::add-mask::$MY_SECRET"
           echo "MY_SECRET=$MY_SECRET" >> $GITHUB_ENV
   
