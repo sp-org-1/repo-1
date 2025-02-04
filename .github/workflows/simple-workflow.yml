@@ -17,8 +17,8 @@ jobs:
         run: echo "$RUNNER_CONTEXT"
       - name: Get github context
         env:
-          GITHUB_CONTEXT: ${{ toJSON(gihub) }}
-        run: echo "$github_CONTEXT"
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Run a multi-line script
