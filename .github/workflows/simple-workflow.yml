@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Get runner context
-        run: echo "${{ RUNNER_CONTEXT }}"
         env:
           RUNNER_CONTEXT: ${{ toJSON(runner) }}
+        run: echo "$RUNNER_CONTEXT"
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Run a multi-line script
