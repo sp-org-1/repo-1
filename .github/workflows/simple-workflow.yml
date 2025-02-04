@@ -3,7 +3,13 @@ name: Simple-Workflow
 
 on:
   workflow_dispatch:
-
+    inputs:
+      environment:
+        required: true
+        options:
+          - dev
+          - qa
+          - select
 jobs:
   build:
     runs-on: ubuntu-latest 
