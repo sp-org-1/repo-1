@@ -29,7 +29,6 @@ jobs:
           VALUE=$(hcp vault-secrets secrets open \
             --app=WebApp --format=json ${{ inputs.key }} | jq -r '.static_version.value')
           echo $VALUE
-          echo "::add-mask::$VALUE"
           echo "value=$VALUE" >> $GITHUB_OUTPUT
       - name: Test
         run: echo ${{ steps.get-secret.outputs.value }}
