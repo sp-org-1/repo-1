@@ -14,7 +14,7 @@ jobs:
   vault:
     runs-on: ubuntu-latest
     outputs:
-      value: ${{ steps.get-secret.oututs.value }}
+      value: ${{ steps.get-secret.outputs.value }}
     steps:
       - uses: 'hashicorp/hcp-auth-action@v0'
         with:
