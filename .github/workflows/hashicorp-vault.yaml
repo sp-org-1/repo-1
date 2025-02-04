@@ -2,7 +2,11 @@ name: Hashicorp-Vault-Get-Creds
 
 on:
   workflow_dispatch:
-
+  workflow_call:
+    outputs:
+      value:
+        description: Secret value
+        value: ${{ env.MY_SECRET }}
 jobs:
   vault:
     runs-on: ubuntu-latest 
