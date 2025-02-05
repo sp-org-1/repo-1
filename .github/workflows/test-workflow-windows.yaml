@@ -1,5 +1,5 @@
 # Simple workflow to demonstrate using AWS CodeBuild runner from GitHub Action
-name: Simple-Workflow
+name: Test-Workflow
 
 on:
   workflow_dispatch:
