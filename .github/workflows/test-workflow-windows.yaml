@@ -16,6 +16,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+        shell: pwsh
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Run a multi-line script
