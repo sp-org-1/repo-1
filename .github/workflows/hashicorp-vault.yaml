@@ -18,9 +18,9 @@ jobs:
     steps:
       - uses: 'hashicorp/hcp-auth-action@v0'
         with:
-          #client_id: ${{ secrets.HCP_CLIENT_ID }}
-          #client_secret: ${{ secrets.HCP_CLIENT_SECRET }}
-          workload_identity_provider: iam/project/edf43880-26d5-4762-ab5f-e9268eef3a25/service-principal/sp-1-admin/workload-identity-provider/github-to-hcp-1
+          client_id: ${{ secrets.HCP_CLIENT_ID }}
+          client_secret: ${{ secrets.HCP_CLIENT_SECRET }}
+          #workload_identity_provider: iam/project/edf43880-26d5-4762-ab5f-e9268eef3a25/service-principal/sp-1-admin/workload-identity-provider/github-to-hcp-1
       - uses: 'hashicorp/hcp-setup-action@v0'
         with:
           version: 'latest'
