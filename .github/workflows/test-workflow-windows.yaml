@@ -4,7 +4,7 @@ name: Test-Workflow-Windows
 on:
   workflow_dispatch:
 env:
-  host: localhost1
+  host: ggg
 jobs:
   build:
     runs-on: windows-latest 
