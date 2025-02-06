@@ -34,7 +34,6 @@ jobs:
           Invoke-Command -ComputerName localhost -ScriptBlock {
             (Get-Host).Version
           }
-          - name: Run a one-line script
         continue-on-error: true
       - name: Run2
         run: |
