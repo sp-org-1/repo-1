@@ -33,7 +33,7 @@ jobs:
       #  shell: cmd
       - name: Run1
         env:
-          cmd_part: ${{ env.host == 'localhost' && '' || '-ComputerName format("{0}", env.host) }}' }}
+          cmd_part: ${{ env.host == 'localhost' && '' || "-ComputerName format('{0}', env.host) }}" }}
         run: |
           echo ${{ env.host }}
           Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
