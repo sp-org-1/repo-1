@@ -33,9 +33,9 @@ jobs:
       #  shell: cmd
       - name: Run1
         env:
-          cmd_part: ${{ env.host == 'localhost' && '' || '-ComputerName ${{ env.host }}' }}
+          cmd_part: ${{ vars.host == 'localhost' && '' || '-ComputerName vars.host' }}
         run: |
-          Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
+          Invoke-Command ${{ vars.cmd_part }} -ScriptBlock {
             (Get-Host).Version
           }
         continue-on-error: true
