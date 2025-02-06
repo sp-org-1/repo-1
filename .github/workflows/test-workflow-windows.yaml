@@ -12,25 +12,30 @@ jobs:
         env:
           RUNNER_CONTEXT: ${{ toJSON(runner) }}
         run: echo "$RUNNER_CONTEXT"
-      - name: Get github context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-        shell: pwsh
-      - name: Get github context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: curl --help
-        shell: pwsh
-      - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-        shell: cmd
-      - name: Run a one-line script
+      #- name: Get github context
+      #  env:
+      #    GITHUB_CONTEXT: ${{ toJSON(github) }}
+      #  run: echo "$GITHUB_CONTEXT"
+      #  shell: pwsh
+      #- name: Get github context
+      #  env:
+      #    GITHUB_CONTEXT: ${{ toJSON(github) }}
+      #  run: curl --help
+      #  shell: pwsh
+      #- name: Run a one-line script
+      #  run: echo Hello, world!
+      #- name: Run a multi-line script
+      #  run: |
+      #    echo Add other actions to build,
+      #    echo test, and deploy your project.
+      #  shell: cmd
+      - name: Run1
         run: |
           Invoke-Command -ComputerName localhost -ScriptBlock {
             (Get-Host).Version
           }
+          - name: Run a one-line script
+        continue-on-error: true
+      - name: Run2
+        run: |
+            (Get-Host).Version
