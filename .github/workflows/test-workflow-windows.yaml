@@ -3,6 +3,8 @@ name: Test-Workflow-Windows
 
 on:
   workflow_dispatch:
+env:
+  host: localhost
 jobs:
   build:
     runs-on: windows-latest 
@@ -30,13 +32,15 @@ jobs:
       #    echo test, and deploy your project.
       #  shell: cmd
       - name: Run1
+        env:
+          cmd_part: ${{ env.host == 'localhost' && '' || '-ComputerName env.host' }}
         run: |
-          Invoke-Command -ComputerName localhost -ScriptBlock {
+          Invoke-Command ${{ cmd_part }} -ScriptBlock {
             (Get-Host).Version
           }
         continue-on-error: true
-      - name: Run2
-        run: |
-          Invoke-Command -ScriptBlock {
-            (Get-Host).Version
-          }
+      #- name: Run2
+      #  run: |
+      #    Invoke-Command -ScriptBlock {
+      #      (Get-Host).Version
+      #    }
