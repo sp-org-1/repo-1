@@ -38,4 +38,6 @@ jobs:
         continue-on-error: true
       - name: Run2
         run: |
+          Invoke-Command -ScriptBlock {
             (Get-Host).Version
+          }
