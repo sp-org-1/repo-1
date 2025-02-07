@@ -10,10 +10,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Run1
-          run: |
-            Invoke-Command -ScriptBlock {
-              (Get-Host).Version
-            }
+        run: |
+          Invoke-Command -ScriptBlock {
+            (Get-Host).Version
+          }
   build:
     strategy:
       matrix:
