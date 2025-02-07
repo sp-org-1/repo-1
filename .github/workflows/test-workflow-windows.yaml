@@ -42,4 +42,3 @@ jobs:
           Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
             (Get-Host).Version
           }
-        continue-on-error: true
