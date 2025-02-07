@@ -7,6 +7,9 @@ env:
   host: localhost
 jobs:
   build:
+    strategy:
+      matrix:
+        host: ['host1', 'host2', 'localhost']
     runs-on: windows-latest 
     steps:
       - uses: actions/checkout@v4
@@ -32,11 +35,11 @@ jobs:
       #    echo test, and deploy your project.
       #  shell: cmd
       - name: Run1
-        env:
-          cmd_part: ${{ env.host == 'localhost' && '' || format('-ComputerName {0}', env.host) }}
+        #env:
+        #  cmd_part: ${{ env.host == 'localhost' && '' || format('-ComputerName {0}', env.host) }}
         run: |
-          echo ${{ env.host }}
-          Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
+          echo ${{ matrix.host }}
+          Invoke-Command -ComputerName ${{ matrix.host }} -ScriptBlock {
             (Get-Host).Version
           }
         continue-on-error: true
