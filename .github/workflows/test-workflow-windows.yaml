@@ -35,8 +35,9 @@ jobs:
       #    echo test, and deploy your project.
       #  shell: cmd
       - name: Run1
-        #env:
-        #  cmd_part: ${{ env.host == 'localhost' && '' || format('-ComputerName {0}', env.host) }}
+        env:
+          #cmd_part: ${{ matrix.host == 'localhost' && 'abc' || format('-ComputerName {0}', env.host) }}
+          cmd_part: ${{ matrix.host == 'localhost' && 'abc' || 'pqr' }}
         run: |
           echo ${{ matrix.host }}
           Invoke-Command -ComputerName ${{ matrix.host }} -ScriptBlock {
