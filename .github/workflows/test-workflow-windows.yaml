@@ -45,7 +45,7 @@ jobs:
       - name: Run1
         env:
           #cmd_part: ${{ matrix.host == 'localhost' && '' || format('-ComputerName {0}', matrix.host) }}
-          cmd_part: ${{ matrix.host == 'localhost' && ' ' || format('-ComputerName {0}', matrix.host) }}
+          cmd_part: ${{ matrix.host == 'localhost' && '' || format('-ComputerName {0}', matrix.host) }}
         run: |
           Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
             (Get-Host).Version
