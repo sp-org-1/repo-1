@@ -39,8 +39,8 @@ jobs:
           #cmd_part: ${{ matrix.host == 'localhost' && 'abc' || format('-ComputerName {0}', env.host) }}
           cmd_part: ${{ matrix.host == 'localhost' && 'abc' || 'pqr' }}
         run: |
-          echo ${{ cmd_part }}
-          Invoke-Command -ComputerName ${{ matrix.host }} -ScriptBlock {
+          echo ${{ env.cmd_part }}
+          Invoke-Command -ComputerName ${{ env.cmd_part }} -ScriptBlock {
             (Get-Host).Version
           }
         continue-on-error: true
