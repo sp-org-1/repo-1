@@ -36,7 +36,6 @@ jobs:
       #  shell: cmd
       - name: Run1
         env:
-          #cmd_part: ${{ matrix.host == 'localhost' && '' || format('-ComputerName {0}', env.host) }}
           cmd_part: ${{ matrix.host == 'localhost' && '' || format('-ComputerName {0}', matrix.host) }}
         run: |
           echo ${{ env.cmd_part }}
@@ -44,8 +43,3 @@ jobs:
             (Get-Host).Version
           }
         continue-on-error: true
-      #- name: Run2
-      #  run: |
-      #    Invoke-Command -ScriptBlock {
-      #      (Get-Host).Version
-      #    }
