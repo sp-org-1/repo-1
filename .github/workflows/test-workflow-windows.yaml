@@ -6,6 +6,14 @@ on:
 env:
   host: localhost
 jobs:
+  job1:
+    runs-on: windows-latest
+    steps:
+      - name: Run1
+          run: |
+            Invoke-Command -ScriptBlock {
+              (Get-Host).Version
+            }
   build:
     strategy:
       matrix:
