@@ -20,11 +20,6 @@ jobs:
         host: ['host1', 'host2', 'localhost']
     runs-on: windows-latest 
     steps:
-      - uses: actions/checkout@v4
-      - name: Get runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJSON(runner) }}
-        run: echo "$RUNNER_CONTEXT"
       #- name: Get github context
       #  env:
       #    GITHUB_CONTEXT: ${{ toJSON(github) }}
@@ -44,8 +39,7 @@ jobs:
       #  shell: cmd
       - name: Run1
         env:
-          #cmd_part: ${{ matrix.host == 'localhost' && '' || format('-ComputerName {0}', matrix.host) }}
-          cmd_part: ${{ matrix.host == 'localhost' && '' || format('-ComputerName {0}', matrix.host) }}
+          cmd_part: ${{ matrix.host == 'localhost' && ' ' || format('-ComputerName {0}', matrix.host) }}
         run: |
           Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
             (Get-Host).Version
