@@ -5,16 +5,13 @@ jobs:
   build:
     strategy:
       matrix:
-        host: ['host1', 'host2', 'localhost']
+        host: ['host1', 'host2', '']
     runs-on: windows-latest 
     steps:
-      #- name: Run1
-      #  env:
-      #    cmd_part: ${{ matrix.host == 'localhost' && ' ' || format('-ComputerName {0}', matrix.host) }}
-      #  run: |
-      #    Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
-      #      (Get-Host).Version
-      #    }
-      - name: Test
+      - name: Run1
+        env:
+          cmd_part: ${{ matrix.host == '' && ' ' || format('-ComputerName {0}', matrix.host) }}
         run: |
-          echo "Hello"
+          Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
+            (Get-Host).Version
+          }
