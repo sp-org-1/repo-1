@@ -3,20 +3,19 @@ name: Get-Env-Specific-Variable
 on:
   workflow_dispatch:
 jobs:
-  build:
+  get-env-variable:
     runs-on: ubuntu-latest
     environment: stage
     outputs:
       VAULT_NS: ${{ steps.get-env-var.outputs.NS }}
     steps:
-      - name: Run a one-line script
+      - name: Get env variable
         id: get-env-var
         run: echo "NS=${{ vars.VAULT_SUBNAMESPACE }}" >> "$GITHUB_OUTPUT"
   
-  test:
+  print-env-variable:
     runs-on: ubuntu-latest
-    needs: build
+    needs: get-env-variable
     steps:
-      - name: Run a one-line script
-        id: get-env-var
-        run: echo ${{ needs.build.outputs.VAULT_NS }}
+      - name: Print env variable
+        run: echo ${{ needs.get-env-variable.outputs.VAULT_NS }}
