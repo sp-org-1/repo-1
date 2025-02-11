@@ -4,11 +4,19 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest 
-      #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
-      #- buildspec-override:true
+    runs-on: ubuntu-latest
     environment: stage
+    outputs:
+      VAULT_NS: ${{ steps.get-env-var.outputs.NS }}
     steps:
       - name: Run a one-line script
-        run: echo ${{ vars.ENV_VAR }}
+        id: get-env-var
+        run: echo "NS=${{ vars.VAULT_SUBNAMESPACE }}" >> "$GITHUB_OUTPUT"
   
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run a one-line script
+        id: get-env-var
+        run: echo ${{ needs.build.outputs.VAULT_NS }}
