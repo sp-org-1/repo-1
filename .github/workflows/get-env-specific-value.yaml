@@ -5,7 +5,7 @@ on:
 jobs:
   get-env-variable:
     runs-on: windows-latest
-    environment: dev
+    environment: stage
     outputs:
       VAULT_NS: ${{ vars.VAULT_SUBNAMESPACE }}
     steps:
