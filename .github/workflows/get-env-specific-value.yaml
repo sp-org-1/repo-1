@@ -5,7 +5,7 @@ on:
 jobs:
   get-env-variable:
     runs-on: ubuntu-latest
-    environment: stage
+    environment: dev
     outputs:
       VAULT_NS: ${{ steps.get-env-var.outputs.NS }}
     steps:
