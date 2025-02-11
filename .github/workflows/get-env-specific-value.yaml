@@ -7,12 +7,12 @@ jobs:
     runs-on: windows-latest
     environment: dev
     outputs:
-      VAULT_NS: ${{ steps.get-env-var.outputs.NS }}
+      VAULT_NS: ${{ vars.VAULT_SUBNAMESPACE }}
     steps:
       - name: Get env variable
         id: get-env-var
         run: |
-          Write-Output "NS=${{ vars.VAULT_SUBNAMESPACE }}" >> "$env:GITHUB_OUTPUT"
+          Write-Output "Get env variable"
   
   print-env-variable:
     runs-on: windows-latest
