@@ -4,18 +4,20 @@ on:
   workflow_dispatch:
 jobs:
   get-env-variable:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: dev
     outputs:
       VAULT_NS: ${{ steps.get-env-var.outputs.NS }}
     steps:
       - name: Get env variable
         id: get-env-var
-        run: echo "NS=${{ vars.VAULT_SUBNAMESPACE }}" >> "$GITHUB_OUTPUT"
+        run: |
+          Write-Output "NS=${{ vars.VAULT_SUBNAMESPACE }}" >> "$env:GITHUB_OUTPUT"
   
   print-env-variable:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: get-env-variable
     steps:
       - name: Print env variable
-        run: echo ${{ needs.get-env-variable.outputs.VAULT_NS }}
+        run: |
+          Write-Output "${{ needs.get-env-variable.outputs.VAULT_NS }}"
