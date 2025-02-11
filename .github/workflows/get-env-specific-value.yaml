@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest 
       #- codebuild-github-runner-01-${{ github.run_id }}-${{ github.run_attempt }}
       #- buildspec-override:true
+    environment: dev
     steps:
       - name: Run a one-line script
         run: echo ${{ vars.ENV_VAR }}
