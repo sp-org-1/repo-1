@@ -45,7 +45,7 @@ jobs:
       #      (Get-Host).Version
       #    }
       #  continue-on-error: true
-  masking-job:
+  masking-job-windows:
     runs-on: windows-latest
     steps:
       - name: Mask
@@ -53,3 +53,15 @@ jobs:
           $sens_val = "mypassword"
           Write-Host "::add-mask::$sens_val"
           Write-Host "Pwd is $sens_val"
+  masking-job-linux:
+    runs-on: lunyx-latest
+    steps:
+      - id: sets-a-secret
+        name: Generate, mask, and output a secret
+        run: |
+          the_secret=$((RANDOM))
+          echo "::add-mask::$the_secret"
+          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+      - name: Use that secret output (protected by a mask)
+        run: |
+          echo "the secret number is ${{ steps.sets-a-secret.outputs.secret-number }}"
