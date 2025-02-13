@@ -45,3 +45,11 @@ jobs:
       #      (Get-Host).Version
       #    }
       #  continue-on-error: true
+  masking-job:
+    runs-on: windows-latest
+    steps:
+      - name: Mask
+        run: |
+          $sens_val = "mypassword"
+          Write-Host "::add-mask::$sens_val"
+          Write-Host "Pwd is $sens_val"
