@@ -54,7 +54,7 @@ jobs:
           Write-Host "::add-mask::$sens_val"
           Write-Host "Pwd is $sens_val"
   masking-job-linux:
-    runs-on: lunyx-latest
+    runs-on: linux-latest
     steps:
       - id: sets-a-secret
         name: Generate, mask, and output a secret
