@@ -32,16 +32,16 @@ jobs:
       #  shell: pwsh
       #- name: Run a one-line script
       #  run: echo Hello, world!
-      #- name: Run a multi-line script
-      #  run: |
-      #    echo Add other actions to build,
-      #    echo test, and deploy your project.
-      #  shell: cmd
-      - name: Run1
-        env:
-          cmd_part: ${{ matrix.host == 'localhost' && ' ' || format('-ComputerName {0}', matrix.host) }}
+      - name: Run a multi-line script
         run: |
-          Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
-            (Get-Host).Version
-          }
-        continue-on-error: true
+          Write-Output "Add other actions to build,"
+          Write-Output "test, and deploy your project."
+        shell: pwsh
+      #- name: Run1
+      #  env:
+      #    cmd_part: ${{ matrix.host == 'localhost' && ' ' || format('-ComputerName {0}', matrix.host) }}
+      #  run: |
+      #    Invoke-Command ${{ env.cmd_part }} -ScriptBlock {
+      #      (Get-Host).Version
+      #    }
+      #  continue-on-error: true
