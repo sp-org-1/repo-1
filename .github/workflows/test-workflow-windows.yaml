@@ -15,9 +15,9 @@ jobs:
   #          (Get-Host).Version
   #        }
   build:
-    strategy:
-      matrix:
-        host: ['host1', 'host2', 'localhost']
+    #strategy:
+    #  matrix:
+    #    host: ['host1', 'host2', 'localhost']
     runs-on: windows-latest 
     steps:
       #- name: Get github context
