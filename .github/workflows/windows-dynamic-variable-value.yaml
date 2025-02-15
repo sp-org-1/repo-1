@@ -16,8 +16,8 @@ jobs:
           $myList.add( "ONE", 1)
           $myList.add( "TWO", 2)
           $myList.add( "THREE", 3)
-          #gh variable list
-          gh pr list
+          gh variable list
+          #gh pr list
           foreach ($h in $myList.Keys) {
             Write-Output "*** $h";
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
