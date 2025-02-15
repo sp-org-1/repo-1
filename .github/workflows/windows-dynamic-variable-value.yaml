@@ -1,7 +1,10 @@
 name: Windows-Dynamic-Variable-Value
 on:
   workflow_dispatch:
-permissions: write-all
+permissions:
+  contents: read
+  actions: read
+  checks: write
 jobs:
   job1:
     runs-on: windows-latest
@@ -19,4 +22,4 @@ jobs:
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
           };
         env:
-          GH_TOKEN: "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"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
