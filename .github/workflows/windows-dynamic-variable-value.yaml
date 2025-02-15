@@ -8,9 +8,9 @@ jobs:
       - name: Run1
         run: |
           $myList = New-Object Collections.Generic.List[string]
-          $myList.Add("one")
-          $myList.Add("two")
-          $myList.Add("three")
+          $myList.add( "one", 1)
+          $myList.add( "two", 2)
+          $myList.add( "three", 3)
           foreach ($h in $myList.Keys) {
             Write-Output "*** $h";
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
