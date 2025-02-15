@@ -26,7 +26,7 @@ jobs:
           #gh pr list
           foreach ($h in $myList.Keys) {
             Write-Output "*** $h";
-            gh variable list $h;
+            gh variable get $h;
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
           };
         env:
