@@ -8,9 +8,9 @@ jobs:
       - name: Run1
         run: |
           $myList = @{}
-          $myList.add( "one", 1)
-          $myList.add( "two", 2)
-          $myList.add( "three", 3)
+          $myList.add( "ONE", 1)
+          $myList.add( "TWO", 2)
+          $myList.add( "THREE", 3)
           foreach ($h in $myList.Keys) {
             Write-Output "*** $h";
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
