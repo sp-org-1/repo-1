@@ -19,4 +19,4 @@ jobs:
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
           };
         env:
-          GH_TOKEN: "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"
+          GH_TOKEN: "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"
