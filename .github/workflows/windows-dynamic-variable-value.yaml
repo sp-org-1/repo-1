@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Run1
         run: |
-          $myList = New-Object Collections.Generic.List[string]
+          $myList = @{}
           $myList.add( "one", 1)
           $myList.add( "two", 2)
           $myList.add( "three", 3)
