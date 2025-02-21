@@ -1,0 +1,28 @@
+name: main update credentials
+
+on:
+  workflow_dispatch:
+    inputs:
+      updateCredentialsService:
+        description: "select service to update credentials"
+        required: true
+        type: choice
+        options:
+          - Clearance - Update credentials for windows services
+          - Clearance - Update credentials to IIS App Pools
+          - Clearance - Update credentials for windows services from the list
+          - Clearance - Update credentials to IIS App Pools from the list
+          - Clearance - Update creds for svcs by svc acct list
+          - Clearance - Update creds for app pools by svc acct list
+          - Internal - Update GMSA credentials for IIS App Pools
+          - Internal - Update GMSA credentials for windows services
+env:
+  appName: ${{ endswith(inputs.updateCredentialsService, 'Clearance - Update credentials for windows services') && 'APS' || endswith(inputs.targetTag, 'Clearance - Update credentials to IIS App Pools') && 'IISAppPool' || 'UPD-CRED-WIN' }}
+
+jobs:
+  check-single-secrets:
+    runs-on: ubuntu-linux
+    steps:
+      - name: Debug
+        run: |
+          echo ${{ env.appName }}
