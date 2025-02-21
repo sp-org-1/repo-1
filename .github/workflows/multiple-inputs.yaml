@@ -31,4 +31,4 @@ jobs:
     steps:
       - name: Debug
         run: |
-          echo ${{ env.appName }}
+          echo "${{ inputs.updateCredentialsService }} :: ${{ env.appName }}"
