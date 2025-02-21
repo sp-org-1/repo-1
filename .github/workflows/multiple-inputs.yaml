@@ -21,7 +21,7 @@ env:
 
 jobs:
   check-single-secrets:
-    runs-on: ubuntu-linux
+    runs-on: ubuntu-latest
     steps:
       - name: Debug
         run: |
