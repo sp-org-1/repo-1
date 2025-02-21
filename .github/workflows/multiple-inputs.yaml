@@ -17,7 +17,7 @@ on:
           - Internal - Update GMSA credentials for IIS App Pools
           - Internal - Update GMSA credentials for windows services
 env:
-  appName: ${{ endswith(inputs.updateCredentialsService, 'Clearance - Update credentials for windows services') && 'APS' || endswith(inputs.targetTag, 'Clearance - Update credentials to IIS App Pools') && 'IISAppPool' || 'UPD-CRED-WIN' }}
+  appName: ${{ endswith(inputs.updateCredentialsService, 'Clearance - Update credentials for windows services') && 'APS' || endswith(inputs.updateCredentialsService, 'Clearance - Update credentials to IIS App Pools') && 'IISAppPool' || 'UPD-CRED-WIN' }}
 
 jobs:
   check-single-secrets:
