@@ -17,8 +17,13 @@ on:
           - Internal - Update GMSA credentials for IIS App Pools
           - Internal - Update GMSA credentials for windows services
 env:
-  appName: ${{ endswith(inputs.updateCredentialsService, 'Clearance - Update credentials for windows services') && 'APS' || 
-               endswith(inputs.updateCredentialsService, 'Clearance - Update credentials to IIS App Pools') && 'IISAppPool' || 'UPD-CRED-WIN' }}
+  appName: ${{ endswith(inputs.updateCredentialsService, 'Update credentials for windows services') && 'APS' || 
+               endswith(inputs.updateCredentialsService, 'Update credentials to IIS App Pools') && 'IISAppPool' || 
+               endswith(inputs.updateCredentialsService, 'Update credentials for windows services from the list') && 'UPD-CRED-WIN' || 
+               endswith(inputs.updateCredentialsService, 'Update credentials to IIS App Pools from the list') && 'APS, Tools' || 
+               endswith(inputs.updateCredentialsService, 'Update creds for svcs by svc acct list') && 'UPD-CRED-WIN' || 
+               endswith(inputs.updateCredentialsService, 'Update creds for app pools by svc acct list') && 'UPD-WIN-PRT' || 
+               endswith(inputs.updateCredentialsService, 'Update GMSA credentials for IIS App Pools') && 'GMSAppPool' || 'File-SVR' }}
 
 jobs:
   check-single-secrets:
