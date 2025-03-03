@@ -5,8 +5,8 @@ jobs:
   build:
     strategy:
       matrix:
-        #host: ['host1', 'host2', '']
-        host: ['']
+        host: ['host1', 'host2', '']
+        #host: ['']
     runs-on: windows-latest 
     steps:
       - name: Run1
