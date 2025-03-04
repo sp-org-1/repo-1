@@ -4,14 +4,32 @@ name: Simple-Workflow
 on:
   workflow_dispatch:
     inputs:
-      environment:
+      targetTag:
+        description: "Select the Target Tag"
         required: true
+        default: 'select'
         type: choice
-        default: 'select value'
         options:
-          - dev
+          - RCM-AHI.APP.PHASE2
+          - RCM-AHI.WEB
+          - RCM-AHI.APP.LEGACY
+          - RCM-AHI.TEST
+          - select
+      environment:
+        description: "Select the Target"
+        required: true
+        default: "Selection needed"
+        type: choice
+        options:
           - qa
-          - select value
+          - dev
+          - mock
+          - Selection needed
+
+env:
+  environment: ${{ inputs.environment }}
+  secrets_path: ${{ endswith(inputs.targetTag, 'PHASE2') && 'phase2' || endswith(inputs.targetTag, 'WEB') && 'web' || endswith(inputs.targetTag, 'TEST') && 'test' || 'legacy' }}_ahi_${{ inputs.environment }}
+
 jobs:
   build:
     runs-on: ubuntu-latest 
@@ -30,7 +48,9 @@ jobs:
           echo "$GITHUB_CONTEXT"
           echo ${{ inputs.environment }}
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: |
+          echo Hello, world!
+          echo ${{ env.secrets_path }}
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
