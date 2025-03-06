@@ -19,9 +19,11 @@ $authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.G
         "Content-Type"  = "application/json"
     }
 
-$callUri = "https://api.github.com/repos/$orgName/$repoName/actions/variables"
+$callUri = "https://api.github.com/repos/$orgName/$repoName/actions/variables/APP_ID"
+Write-Output $callUri
 
 $repoVariables = Invoke-RestMethod -Method get -Uri $callUri -Headers $headers 
+Write-Output $repoVariables
 
 foreach ($variable in $repoVariables) {
     write-host  $variable.name
