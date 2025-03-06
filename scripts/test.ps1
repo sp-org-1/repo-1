@@ -19,7 +19,7 @@ $authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.G
         "Content-Type"  = "application/json"
     }
 
-$reposAPIUri = "https://api.github.com/orgs/$orgaName/$repoName/actions/variables"
+$reposAPIUri = "https://api.github.com/orgs/$orgName/$repoName/actions/variables"
 
 $repoVariables = Invoke-RestMethod -Method get -Uri $reposAPIUri -Headers $headers 
 
