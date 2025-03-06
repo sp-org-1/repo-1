@@ -6,7 +6,7 @@ param(
 
     [Parameter(Mandatory=$true)]
     [string]
-    $orgName
+    $orgName,
     
     [Parameter(Mandatory=$true)]
     [string]
