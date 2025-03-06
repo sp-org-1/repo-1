@@ -1,3 +1,5 @@
+pwd
+dir
 $dlist = New-Object -TypeName 'System.Collections.ArrayList';
 Select-String -Path "octopus.config" -Pattern '#{.*}' | ForEach-Object { 
     $value = $_.Matches.Value;
