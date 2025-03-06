@@ -14,10 +14,10 @@ param(
 )
 
 $authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$accessToken"))
-    $headers = @{
-        "Authorization" = [String]::Format("Basic {0}", $authenticationToken)
+$headers = @{
+        "Authorization" = "Bearer " [String]::Format("Bearer {0}", $authenticationToken)
         "Content-Type"  = "application/json"
-    }
+}
 
 $callUri = "https://api.github.com/repos/$orgName/$repoName/actions/variables/APP_ID"
 Write-Output $callUri
