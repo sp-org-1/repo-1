@@ -1,5 +1,28 @@
-pwd
-dir
+param(
+    # The access token to the GitHub Rest API 
+    [Parameter(Mandatory=$true)]
+    [string]
+    $accessToken, 
+
+    [Parameter(Mandatory=$true)]
+    [string]
+    $orgaName
+)
+
+$authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$accessToken"))
+    $headers = @{
+        "Authorization" = [String]::Format("Basic {0}", $authenticationToken)
+        "Content-Type"  = "application/json"
+    }
+
+$reposAPIUri = "https://api.github.com/orgs/$($orgaName)/repos"
+
+$githubRepositories = Invoke-RestMethod -Method get -Uri $reposAPIUri -Headers $headers 
+
+foreach ($respository in $githubRepositories) {
+    write-host  $respository.name
+}
+
 $dlist = New-Object -TypeName 'System.Collections.ArrayList';
 Select-String -Path "octopus.config" -Pattern '#{.*}' | ForEach-Object { 
     $value = $_.Matches.Value;
