@@ -13,4 +13,4 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
-          .\scripts\test.ps1 -accessToken Z2hwXzFvZFppcGJZbEM1VUJwaUVEN0d1dXBDSkxHSkFMZDNpWDN1Vgo= -orgaName sp-org-1
+          .\scripts\test.ps1 -accessToken Z2hwXzFvZFppcGJZbEM1VUJwaUVEN0d1dXBDSkxHSkFMZDNpWDN1Vgo= -orgName sp-org-1 -repoName repo-1
