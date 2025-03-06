@@ -6,7 +6,11 @@ param(
 
     [Parameter(Mandatory=$true)]
     [string]
-    $orgaName
+    $orgName
+    
+    [Parameter(Mandatory=$true)]
+    [string]
+    $repoName
 )
 
 $authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$accessToken"))
@@ -15,12 +19,12 @@ $authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.G
         "Content-Type"  = "application/json"
     }
 
-$reposAPIUri = "https://api.github.com/orgs/$($orgaName)/repos"
+$reposAPIUri = "https://api.github.com/orgs/$orgaName/$repoName/actions/variables"
 
-$githubRepositories = Invoke-RestMethod -Method get -Uri $reposAPIUri -Headers $headers 
+$repoVariables = Invoke-RestMethod -Method get -Uri $reposAPIUri -Headers $headers 
 
-foreach ($respository in $githubRepositories) {
-    write-host  $respository.name
+foreach ($variable in $repoVariables) {
+    write-host  $variable.name
 }
 
 $dlist = New-Object -TypeName 'System.Collections.ArrayList';
