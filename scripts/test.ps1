@@ -19,6 +19,12 @@ $headers = @{
         "Content-Type"  = "application/json"
 }
 
+$callUri = "https://api.github.com/orgs/$($orgaName)/repos"
+Write-Output $callUri
+
+$repoVariables = Invoke-RestMethod -Method get -Uri $callUri -Headers $headers 
+Write-Output $repoVariables
+
 $callUri = "https://api.github.com/repos/$orgName/$repoName/actions/variables/APP_ID"
 Write-Output $callUri
 
