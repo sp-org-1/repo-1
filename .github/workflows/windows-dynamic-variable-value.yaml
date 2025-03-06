@@ -21,7 +21,6 @@ jobs:
           $myList = @{}
           $myList.add( "ONE", 1)
           $myList.add( "TWO", 2)
-          $myList.add( "THREE", 3)
           gh variable list
           #gh pr list
           foreach ($h in $myList.Keys) {
@@ -29,6 +28,14 @@ jobs:
             gh variable get $h;
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
           };
+          $headers = @{
+            "Authorization" = [String]::Format("Basic {0}", $accessToken)
+            "Content-Type"  = "application/json"
+          }
+
+          $callUri = "https://api.github.com/orgs/sp-org-1/repos"
+          Write-Output $callUri
+
         env:
           #GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           GITHUB_TOKEN: ${{ steps.generate-access-token.outputs.token }}
