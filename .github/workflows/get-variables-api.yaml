@@ -1,0 +1,12 @@
+name: Windows-Variable-List-API
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  checks: write
+jobs:
+  job1:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
