@@ -13,10 +13,10 @@ param(
     $repoName
 )
 
-#$authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$accessToken"))
+$authenticationToken = [System.Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$accessToken"))
 $headers = @{
-        #"Authorization" = [String]::Format("Basic {0}", $authenticationToken)
-        "Authorization" = [String]::Format("Basic {0}", $accessToken)
+        "Authorization" = [String]::Format("token {0}", $authenticationToken)
+        #"Authorization" = [String]::Format("Basic {0}", $accessToken)
         "Content-Type"  = "application/json"
 }
 
