@@ -10,13 +10,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generate access token
-        id: generate-access-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.PRIVATE_KEY }}
+      #- name: Generate access token
+      #  id: generate-access-token
+      #  uses: actions/create-github-app-token@v1
+      #  with:
+      #    app-id: ${{ vars.APP_ID }}
+      #    private-key: ${{ secrets.PRIVATE_KEY }}
       - name: Build
         shell: pwsh
         run: |
-          .\scripts\test.ps1 -accessToken ${{ steps.generate-access-token.outputs.token }} -orgName sp-org-1 -repoName repo-1
+          .\scripts\test.ps1 -accessToken Z2hwX05oWG9YZTVud1hXMjJHdUR0T0V0b2FiaXc1MDNiUjJ6dHFBago= -orgName sp-org-1 -repoName repo-1
