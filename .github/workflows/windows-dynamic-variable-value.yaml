@@ -35,6 +35,8 @@ jobs:
 
           $callUri = "https://api.github.com/orgs/sp-org-1/repos"
           Write-Output $callUri
+          $repoVariables = Invoke-RestMethod -Method get -Uri $callUri -Headers $headers 
+          Write-Output $repoVariables
 
         env:
           #GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
