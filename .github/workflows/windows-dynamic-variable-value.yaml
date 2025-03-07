@@ -29,7 +29,7 @@ jobs:
             #Write-Output "******** ${{ vars[format('{0}', '$h')] }}";
           };
           $headers = @{
-            "Authorization" = [String]::Format("Basic {0}", $env:GITHUB_TOKEN)
+            "Authorization" = [String]::Format("token {0}", $env:GITHUB_TOKEN)
             "Content-Type"  = "application/json"
           }
 
