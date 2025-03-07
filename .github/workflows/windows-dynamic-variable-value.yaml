@@ -38,6 +38,11 @@ jobs:
           $repoVariables = Invoke-RestMethod -Method get -Uri $callUri -Headers $headers 
           Write-Output $repoVariables
 
+          $callUri = "https://api.github.com/repos/sp-org-1/repo-1/actions/variables/APP_ID"
+          Write-Output $callUri
+          $repoVariables = Invoke-RestMethod -Method get -Uri $callUri -Headers $headers 
+          Write-Output $repoVariables
+
         env:
           #GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           GITHUB_TOKEN: ${{ steps.generate-access-token.outputs.token }}
