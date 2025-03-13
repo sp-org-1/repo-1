@@ -1,7 +1,12 @@
 import requests
 import sys
 import json
+import uuid
+import boto3
 from requests.auth import HTTPBasicAuth
+
+def invoke_agent():
+    
 
 username = sys.argv[1]
 password = ""
