@@ -21,7 +21,7 @@ for issue in issues:
     if issue.get('status') == "CLOSED":
         continue
     f = open("prompt.txt", "a")
-    with open("action-prompt.txt", 'r') as file:
+    with open(".github/workflows/scripts/action-prompt.txt", 'r') as file:
         content = file.read()
         f.write(content + "\n")
     f.write("Vulnerability Details\n")
