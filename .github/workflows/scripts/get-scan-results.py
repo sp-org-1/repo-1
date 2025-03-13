@@ -1,4 +1,5 @@
 import requests
+import sys
 from requests.auth import HTTPBasicAuth
 
 username = sys.argv[0]
