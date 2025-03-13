@@ -14,7 +14,7 @@ jobs:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Get Scan Results
         run: |
-          python scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }}
+          python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }}
           #jsonoutput=`curl -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/issues/search?organization=sp-org-1&projects=sp-org-1_repo-1" | jq -c '[ .issues[] | select(.issueStatus == "OPEN") ]'`
           #output=`curl -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/issues/search?organization=sp-org-1&projects=sp-org-1_repo-1" | jq -c '.issues[] | select(.issueStatus == "OPEN")'`
           #echo $output
