@@ -12,4 +12,5 @@ params = {
     'projects': 'sp-org-1_repo-1',
 }
 response = requests.get('https://sonarcloud.io/api/issues/search', params=params, headers=headers, auth=HTTPBasicAuth(username, password))
-print(response.json())
+print(response)
+#print(response.json())
