@@ -14,5 +14,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Get Scan Results
         run: |
-          curl -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/issues/search?organization=sp-org-1&projects=sp-org-1_repo-1
-  
+          curl -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/issues/search?organization=sp-org-1&projects=sp-org-1_repo-1"  
