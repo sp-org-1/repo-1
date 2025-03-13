@@ -24,7 +24,7 @@ for issue in issues:
     with open(".github/workflows/scripts/action-prompt.txt", 'r') as file:
         content = file.read()
         f.write(content + "\n")
-    f.write("Vulnerability Details\n")
+    f.write("Vulnerability Details:\n")
     f.write("```\n")
     key = issue.get('key')
     f.write("key:" + key + "\n")
@@ -43,7 +43,7 @@ for issue in issues:
     endoffset = issue.get('textRange').get('endOffset')  
     f.write("endoffset:" + str(endoffset) + "\n")
     f.write("```\n")
-    f.write("File Contents" + "\n")
+    f.write("File Contents:" + "\n")
     f.write("```\n")
     filename = issue.get('component').split(":")[1]
     with open(filename, 'r') as file:
