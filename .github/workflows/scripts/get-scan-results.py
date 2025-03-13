@@ -32,13 +32,13 @@ for issue in issues:
     if(issue.get('textRange') == None):
         continue
     startline = issue.get('textRange').get('startLine')
-    f.write("startline:" + startline)
+    f.write("startline:" + str(startline))
     endline = issue.get('textRange').get('endLine')  
-    f.write("endline:" + endline)
+    f.write("endline:" + str(endline))
     startoffset = issue.get('textRange').get('startOffset')
-    f.write("startoffset:" + startoffset)
+    f.write("startoffset:" + str(startoffset))
     endoffset = issue.get('textRange').get('endOffset')  
-    f.write("endoffset:" + endoffset)
+    f.write("endoffset:" + str(endoffset))
     f.write("```")
     f.write("File Contents")
     f.write("```")
