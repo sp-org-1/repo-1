@@ -12,6 +12,28 @@ def invoke_agent():
     session_id = uuid.uuid4().hex
     print("session_id:", session_id)
 
+    # Generate prompt
+    with open('prompt.txt', 'r') as file:
+        content = file.read()
+
+    # Invoke agent
+    response = client.invoke_agent(
+        agentId='CM3GUGONHG',
+        agentAliasId='HIEAMVWWIC',
+        sessionId=session_id,
+        inputText=content,
+    )
+    completion = ""
+    
+    # Extract completion from response
+    for event in response.get("completion"):
+        chunk = event["chunk"]
+        completion += chunk["bytes"].decode()
+    print("Following is the response from agent:")
+    print("===========================================")
+    print(completion)
+    print("===========================================")
+
 def get_scan_results(sonar_token):
     username = sonar_token
     password = ""
@@ -70,3 +92,4 @@ def get_scan_results(sonar_token):
 
 # Execution starts here
 get_scan_results(sys.argv[1])
+invoke_agent()
