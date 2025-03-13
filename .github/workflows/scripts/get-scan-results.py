@@ -51,6 +51,6 @@ for issue in issues:
 
     with open("prompt.txt", 'r') as file:
         content = file.read()
-        f.write(content)
+        print(content)
     
     break
