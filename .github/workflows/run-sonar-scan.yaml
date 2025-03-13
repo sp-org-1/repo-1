@@ -3,11 +3,13 @@ name: Run-Sonarscan
 on:
   workflow_dispatch:
 jobs:
-  get-env-variable:
+  sonarqube:
+    name: SonarQube
     runs-on: ubuntu-latest
     steps:
-      - name: Get env variable
-        id: get-env-var
-        run: |
-          echo "Get env variable"
+      - uses: actions/checkout@v4
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   
