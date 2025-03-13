@@ -13,4 +13,4 @@ params = {
 }
 response = requests.get('https://sonarcloud.io/api/issues/search', params=params, headers=headers, auth=HTTPBasicAuth(username, password))
 #print(response)
-print(response.json())
+print(response.text)
