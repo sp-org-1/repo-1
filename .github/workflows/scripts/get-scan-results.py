@@ -21,32 +21,32 @@ for issue in issues:
     if issue.get('status') == "CLOSED":
         continue
     f = open("prompt.txt", "a")
-    f.write("Vulnerability Details")
-    f.write("```")
+    f.write("Vulnerability Details\n")
+    f.write("```\n")
     key = issue.get('key')
-    f.write("key:" + key)
+    f.write("key:" + key + "\n")
     rule = issue.get('rule')
-    f.write("rule:" + rule)
+    f.write("rule:" + rule + "\n")
     message = issue.get('message')
-    f.write("message:" + message)
+    f.write("message:" + message + "\n")
     if(issue.get('textRange') == None):
         continue
     startline = issue.get('textRange').get('startLine')
-    f.write("startline:" + str(startline))
+    f.write("startline:" + str(startline) + "\n")
     endline = issue.get('textRange').get('endLine')  
-    f.write("endline:" + str(endline))
+    f.write("endline:" + str(endline) + "\n")
     startoffset = issue.get('textRange').get('startOffset')
-    f.write("startoffset:" + str(startoffset))
+    f.write("startoffset:" + str(startoffset) + "\n")
     endoffset = issue.get('textRange').get('endOffset')  
-    f.write("endoffset:" + str(endoffset))
-    f.write("```")
-    f.write("File Contents")
-    f.write("```")
+    f.write("endoffset:" + str(endoffset) + "\n")
+    f.write("```\n")
+    f.write("File Contents" + "\n")
+    f.write("```\n")
     filename = issue.get('component').split(":")[1]
     with open(filename, 'r') as file:
         content = file.read()
-        f.write(content)
-    f.write("```")
+        f.write(content + "\n")
+    f.write("```\n")
     f.close()
 
     with open("prompt.txt", 'r') as file:
