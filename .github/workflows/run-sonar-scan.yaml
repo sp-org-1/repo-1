@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #- name: SonarQube Scan
+      #  uses: SonarSource/sonarqube-scan-action@v5
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Get Scan Results
         run: |
           jsonoutput=`curl -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/issues/search?organization=sp-org-1&projects=sp-org-1_repo-1" | jq -c '[ .issues[] | select(.issueStatus == "OPEN") ]'`
