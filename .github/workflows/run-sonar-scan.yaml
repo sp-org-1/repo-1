@@ -16,4 +16,7 @@ jobs:
         run: |
           jsonoutput=`curl -u ${{ secrets.SONAR_TOKEN }}: "https://sonarcloud.io/api/issues/search?organization=sp-org-1&projects=sp-org-1_repo-1" | jq -c '[ .issues[] | select(.issueStatus == "OPEN") ]'`
           # Get component
-          echo $jsonoutput | jq .[].component
+          for filename in `echo $jsonoutput | jq .[].component | cut -d ':' -f 2`; do
+            echo $filename
+          done
+          
