@@ -49,7 +49,7 @@ for issue in issues:
     f.write("```")
     f.close()
 
-    with open(prompt.txt, 'r') as file:
+    with open("prompt.txt", 'r') as file:
         content = file.read()
         f.write(content)
     
