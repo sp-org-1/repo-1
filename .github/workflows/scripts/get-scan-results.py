@@ -6,8 +6,13 @@ import boto3
 from requests.auth import HTTPBasicAuth
 
 def invoke_agent():
+    client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
     
+    # Generate unique session ID
+    session_id = uuid.uuid4().hex
+    print("session_id:", session_id)
 
+######################
 username = sys.argv[1]
 password = ""
 headers = {
