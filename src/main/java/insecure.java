@@ -13,7 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -103,8 +103,8 @@ public class Insecure {
     storeData(myInput);                   // store data after sanitizing --> No injection vulnerability 
   }
 
-  public void test1() {
-    String img = FileUtils.getInstance().getUserImagePath(request.getRemoteUser()) + extension;
-    final ByteArrayResource inputStream  new ByteArrayResource(fileCache.getFileBytes(img));
-  }
+  //public void test1() {
+  //  String img = FileUtils.getInstance().getUserImagePath(request.getRemoteUser()) + extension;
+  //  final ByteArrayResource inputStream  new ByteArrayResource(fileCache.getFileBytes(img));
+  //}
 }
