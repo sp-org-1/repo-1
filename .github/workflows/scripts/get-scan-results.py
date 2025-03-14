@@ -17,10 +17,10 @@ def invoke_agent(promptfiles):
     for file in promptfiles:
         with open(file, 'r') as file:
             content = file.read()
-            print("Following is the prompt to agent:")
-            print("===========================================")
-            print(content)
-            print("===========================================")
+            #print("Following is the prompt to agent:")
+            #print("===========================================")
+            #print(content)
+            #print("===========================================")
             response = client.invoke_agent(
                 agentId='CM3GUGONHG',
                 agentAliasId='HIEAMVWWIC',
