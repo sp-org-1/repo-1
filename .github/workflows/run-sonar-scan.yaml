@@ -2,6 +2,11 @@ name: Run-Sonarscan
 
 on:
   workflow_dispatch:
+env:
+  AWS_REGION: "us-east-1"
+permissions:
+  id-token: write
+  contents: read
 jobs:
   sonarqube:
     name: SonarQube
@@ -17,7 +22,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::291912718832:role/oidc-github-aws
           role-session-name: GitHub-To-AWS-OIDC
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_REGION }}
       - name: run aws command
         run: aws codebuild list-projects
       - name: Get Scan Results
