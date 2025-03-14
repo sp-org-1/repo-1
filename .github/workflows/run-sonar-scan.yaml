@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 env:
   AWS_REGION: "us-east-1"
-permissions:
-  id-token: write
-  issues: write
-  contents: read
+permissions: write-all
+  #id-token: write
+  #issues: write
+  #contents: read
 jobs:
   sonarqube:
     name: SonarQube
