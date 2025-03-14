@@ -10,7 +10,7 @@ Rules:
 - Provide separate suggestions for each 'key' property from each vulnerability on a new line. You combine the suggestions for same rules.
 - Provide at least one web reference for each suggestion if possbile.
 Report Format:
-#### Suggestions by AI-Assist for vulnerabilities found by SonarQube scan in file (specify source code file name)**
+#### Source file: (specify source code file name in italics)**
   - **suggestion-1**: Provide suggestion details
   - **suggestion-2**: Provide suggestion details
   - **suggestion-n**: Provide suggestion details
