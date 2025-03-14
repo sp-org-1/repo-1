@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Get github context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
+      #- name: Get github context
+      #  env:
+      #    GITHUB_CONTEXT: ${{ toJSON(github) }}
+      #  run: |
+      #    echo "$GITHUB_CONTEXT"
       #- name: SonarQube Scan
       #  uses: SonarSource/sonarqube-scan-action@v5
       #  env:
@@ -29,7 +29,7 @@ jobs:
           role-to-assume: arn:aws:iam::291912718832:role/oidc-github-aws
           role-session-name: GitHub-To-AWS-OIDC
           aws-region: ${{ env.AWS_REGION }}
-      #- name: Get Scan Results
-      #  run: |
-      #    python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }} ${{ secrets.GITHUB_TOKEN }} ${{ github.sha }}
+      - name: Get Scan Results
+        run: |
+          python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }} ${{ secrets.GITHUB_TOKEN }} ${{ github.sha }}
           
