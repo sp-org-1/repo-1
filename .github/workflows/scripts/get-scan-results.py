@@ -6,6 +6,15 @@ import uuid
 import boto3
 from requests.auth import HTTPBasicAuth
 
+def add_comment_to_commit(token, comment):
+    url = f"https://api.github.com/repos/sp-orf-1/repo-1/commits/b5c2d45afde9a3327dc44cb7b81ddd81b3c0e016/comments"
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github+json"
+    }
+    data = {"body": comment}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+
 def invoke_agent(promptfiles):
     client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
     
@@ -36,8 +45,11 @@ def invoke_agent(promptfiles):
                 completion += chunk["bytes"].decode()
             finaloutput = finaloutput + completion + "\n"
             
-    print(finaloutput)
-    print("===========================================")
+    return finaloutput
+    #print(finaloutput)
+    #print("===========================================")
+    # Add comment to git commit
+    #add_comment_to_commit(token, finaloutput)
 
             
     #with open('prompt.txt', 'r') as file:
@@ -114,4 +126,5 @@ def get_scan_results(sonar_token):
     
 # Execution starts here
 promptfiles = get_scan_results(sys.argv[1])
-invoke_agent(promptfiles)
+finaloutput = invoke_agent(promptfiles)
+add_comment_to_commit(sys.argv[2], finaloutput)
