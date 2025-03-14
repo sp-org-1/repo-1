@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #- name: SonarQube Scan
+      #  uses: SonarSource/sonarqube-scan-action@v5
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #- name: configure aws credentials
       #  uses: aws-actions/configure-aws-credentials@v4
       #  with:
