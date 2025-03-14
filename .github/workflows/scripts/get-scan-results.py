@@ -50,7 +50,7 @@ def get_scan_results(sonar_token):
     # Parse the JSON response
     jsonout = json.loads(response.text)
     issues = jsonout.get('issues', [])
-    
+    promptfiles = []
     for issue in issues:
         if issue.get('status') == "CLOSED":
             continue
@@ -65,6 +65,7 @@ def get_scan_results(sonar_token):
             f = open(promptfilename, "a")
         else:
             ## File does not exists, first entry
+            promptfiles.append(promptfilename)
             f = open(promptfilename, "a")
             # Add prompt
             with open(".github/workflows/scripts/action-prompt.txt", 'r') as file:
@@ -97,15 +98,12 @@ def get_scan_results(sonar_token):
             f.write("endoffset:" + str(endoffset) + "\n")
         f.write("------\n")
         f.close()
+
+    print(promptfiles)
+    #with open(promptfilename, 'r') as file:
+    #    content = file.read()
+    #    print(content)
     
-    with open(promptfilename, 'r') as file:
-        content = file.read()
-        print(content)
-    
-    current_directory = os.getcwd()    
-    files = os.listdir(current_directory)
-    for file in files:
-        print(file)
     
 # Execution starts here
 get_scan_results(sys.argv[1])
