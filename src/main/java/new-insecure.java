@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Insecure {
+public class NewInsecure {
 
   public void badFunction(HttpServletRequest request) throws IOException {
     String obj = request.getParameter("data");
