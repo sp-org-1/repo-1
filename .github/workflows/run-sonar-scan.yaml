@@ -12,6 +12,14 @@ jobs:
       #  uses: SonarSource/sonarqube-scan-action@v5
       #  env:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::291912718832:role/oidc-github-aws
+          role-session-name: GitHub-To-AWS-OIDC
+          aws-region: ${{ env.AWS_REGION }}
+      - name: run aws command
+        run: aws codebuild list-projects
       - name: Get Scan Results
         run: |
           python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }}
