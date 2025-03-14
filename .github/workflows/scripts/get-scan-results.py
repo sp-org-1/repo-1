@@ -7,12 +7,13 @@ import boto3
 from requests.auth import HTTPBasicAuth
 
 def add_comment_to_commit(token, comment):
-    url = f"https://api.github.com/repos/sp-orf-1/repo-1/commits/b5c2d45afde9a3327dc44cb7b81ddd81b3c0e016/comments"
+    url = f"https://api.github.com/repos/sp-org-1/repo-1/commits/b5c2d45afde9a3327dc44cb7b81ddd81b3c0e016/comments"
     headers = {
         "Authorization": f"token {token}",
         "Accept": "application/vnd.github+json"
     }
     data = {"body": comment}
+    print(comment)
     response = requests.post(url, headers=headers, data=json.dumps(data))
 
 def invoke_agent(promptfiles):
