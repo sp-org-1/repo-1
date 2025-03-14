@@ -17,6 +17,10 @@ def invoke_agent(promptfiles):
     for file in promptfiles:
         with open(file, 'r') as file:
             content = file.read()
+            print("Following is the prompt to agent:")
+            print("===========================================")
+            print(content)
+            print("===========================================")
             response = client.invoke_agent(
                 agentId='CM3GUGONHG',
                 agentAliasId='HIEAMVWWIC',
@@ -29,8 +33,6 @@ def invoke_agent(promptfiles):
             for event in response.get("completion"):
                 chunk = event["chunk"]
                 completion += chunk["bytes"].decode()
-            print("Following is the response from agent:")
-            print("===========================================")
             print(completion)
             print("===========================================")
 
