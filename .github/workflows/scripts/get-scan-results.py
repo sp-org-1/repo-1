@@ -6,14 +6,14 @@ import uuid
 import boto3
 from requests.auth import HTTPBasicAuth
 
-def add_comment_to_commit(token, comment):
-    url = f"https://api.github.com/repos/sp-org-1/repo-1/commits/b5c2d45afde9a3327dc44cb7b81ddd81b3c0e016/comments"
+def add_comment_to_commit(token, commitsha, comment):
+    url = "https://api.github.com/repos/sp-org-1/repo-1/commits/" + commitsha + "/comments"
     headers = {
         "Authorization": f"token {token}",
         "Accept": "application/vnd.github+json"
     }
     data = {"body": comment}
-    print(comment)
+    #print(comment)
     response = requests.post(url, headers=headers, data=json.dumps(data))
     print(response)
 
@@ -129,4 +129,4 @@ def get_scan_results(sonar_token):
 # Execution starts here
 promptfiles = get_scan_results(sys.argv[1])
 finaloutput = invoke_agent(promptfiles)
-add_comment_to_commit(sys.argv[2], finaloutput)
+add_comment_to_commit(sys.argv[2], sys.argv[3], finaloutput)
