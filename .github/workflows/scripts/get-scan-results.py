@@ -6,7 +6,7 @@ import uuid
 import boto3
 from requests.auth import HTTPBasicAuth
 
-def invoke_agent():
+def invoke_agent(promptfiles):
     client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
     
     # Generate unique session ID
@@ -16,24 +16,24 @@ def invoke_agent():
     # Generate prompt
     with open('prompt.txt', 'r') as file:
         content = file.read()
-
+    print(promptfiles)
     # Invoke agent
-    response = client.invoke_agent(
-        agentId='CM3GUGONHG',
-        agentAliasId='HIEAMVWWIC',
-        sessionId=session_id,
-        inputText=content,
-    )
-    completion = ""
+    #response = client.invoke_agent(
+    #    agentId='CM3GUGONHG',
+    #    agentAliasId='HIEAMVWWIC',
+    #    sessionId=session_id,
+    #    inputText=content,
+    #)
+    #completion = ""
     
     # Extract completion from response
-    for event in response.get("completion"):
-        chunk = event["chunk"]
-        completion += chunk["bytes"].decode()
-    print("Following is the response from agent:")
-    print("===========================================")
-    print(completion)
-    print("===========================================")
+    #for event in response.get("completion"):
+    #    chunk = event["chunk"]
+    #    completion += chunk["bytes"].decode()
+    #print("Following is the response from agent:")
+    #print("===========================================")
+    #print(completion)
+    #print("===========================================")
 
 def get_scan_results(sonar_token):
     username = sonar_token
@@ -99,14 +99,8 @@ def get_scan_results(sonar_token):
         f.write("------\n")
         f.close()
 
-    #print(promptfiles)
-    for file in promptfiles:
-        print(file)
-        with open(file, 'r') as file:
-            content = file.read()
-            print(content)
-    
+    return promptfiles
     
 # Execution starts here
-get_scan_results(sys.argv[1])
-#invoke_agent()
+promptfiles = get_scan_results(sys.argv[1])
+invoke_agent(promptfiles)
