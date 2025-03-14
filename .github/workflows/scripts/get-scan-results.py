@@ -97,9 +97,9 @@ def get_scan_results(sonar_token):
         f.write("------\n")
         f.close()
     
-        #with open(promptfilename, 'r') as file:
-        #    content = file.read()
-        #    print(content)
+    with open(promptfilename, 'r') as file:
+        content = file.read()
+        print(content)
     
     current_directory = os.getcwd()    
     files = os.listdir(current_directory)
