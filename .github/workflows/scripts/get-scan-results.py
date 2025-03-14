@@ -15,6 +15,7 @@ def add_comment_to_commit(token, comment):
     data = {"body": comment}
     print(comment)
     response = requests.post(url, headers=headers, data=json.dumps(data))
+    print(response)
 
 def invoke_agent(promptfiles):
     client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
