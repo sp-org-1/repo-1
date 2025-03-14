@@ -7,34 +7,39 @@ import boto3
 from requests.auth import HTTPBasicAuth
 
 def invoke_agent(promptfiles):
-    #client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
+    client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
     
     # Generate unique session ID
-    #session_id = uuid.uuid4().hex
-    #print("session_id:", session_id)
+    session_id = uuid.uuid4().hex
+    print("session_id:", session_id)
 
     # Generate prompt
+    for file in promptfiles:
+        with open(file, 'r') as file:
+            content = file.read()
+            response = client.invoke_agent(
+                agentId='CM3GUGONHG',
+                agentAliasId='HIEAMVWWIC',
+                sessionId=session_id,
+                inputText=content,
+            )
+            completion = ""
+            
+            # Extract completion from response
+            for event in response.get("completion"):
+                chunk = event["chunk"]
+                completion += chunk["bytes"].decode()
+            print("Following is the response from agent:")
+            print("===========================================")
+            print(completion)
+            print("===========================================")
+
+            
     #with open('prompt.txt', 'r') as file:
     #    content = file.read()
-    print(promptfiles)
+    #print(promptfiles)
     # Invoke agent
-    #response = client.invoke_agent(
-    #    agentId='CM3GUGONHG',
-    #    agentAliasId='HIEAMVWWIC',
-    #    sessionId=session_id,
-    #    inputText=content,
-    #)
-    #completion = ""
     
-    # Extract completion from response
-    #for event in response.get("completion"):
-    #    chunk = event["chunk"]
-    #    completion += chunk["bytes"].decode()
-    #print("Following is the response from agent:")
-    #print("===========================================")
-    #print(completion)
-    #print("===========================================")
-
 def get_scan_results(sonar_token):
     username = sonar_token
     password = ""
