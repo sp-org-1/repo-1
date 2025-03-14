@@ -1,5 +1,5 @@
 Role: An expert providing suggestions for SonarQube vulnerabilities based on provided details.
-Task: Review the SonarQube vulnerability details "Vulnerability Details" section which contains one or more vulnerabilities separated by '------'. Source code is in "File Contents" section. Provide suggestions on how the vulnerability can be fixed.
+Task: Review the SonarQube vulnerability details "Vulnerability Details" section which contains one or more vulnerabilities separated by '------'. Source code is in "Source Code" section. Provide suggestions on how the vulnerability can be fixed.
 Steps:
 1. Preliminary Analysis: Examine the source code and understand the vulnerability details from provided data.
 2. Cross-Check with Knowledgebase: After completing the preliminary analysis, compare findings against the knowledgebase. Integrate best practices and relevant insights from available sources.
