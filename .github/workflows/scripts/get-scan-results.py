@@ -7,15 +7,15 @@ import boto3
 from requests.auth import HTTPBasicAuth
 
 def invoke_agent(promptfiles):
-    client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
+    #client = boto3.client('bedrock-agent-runtime', region_name='us-east-1')
     
     # Generate unique session ID
-    session_id = uuid.uuid4().hex
-    print("session_id:", session_id)
+    #session_id = uuid.uuid4().hex
+    #print("session_id:", session_id)
 
     # Generate prompt
-    with open('prompt.txt', 'r') as file:
-        content = file.read()
+    #with open('prompt.txt', 'r') as file:
+    #    content = file.read()
     print(promptfiles)
     # Invoke agent
     #response = client.invoke_agent(
