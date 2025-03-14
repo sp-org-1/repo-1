@@ -6,6 +6,7 @@ env:
   AWS_REGION: "us-east-1"
 permissions:
   id-token: write
+  issues: write
   contents: read
 jobs:
   sonarqube:
@@ -25,5 +26,5 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Get Scan Results
         run: |
-          python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }}
+          python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }} ${{ secrets.GITHUB_TOKEN }}
           
