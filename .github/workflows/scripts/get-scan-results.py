@@ -14,6 +14,7 @@ def invoke_agent(promptfiles):
     print("session_id:", session_id)
 
     # Generate prompt
+    finaloutput = "### Suggestions by AI-Assist for vulnerabilities found by SonarQube scan\n"
     for file in promptfiles:
         with open(file, 'r') as file:
             content = file.read()
@@ -33,8 +34,10 @@ def invoke_agent(promptfiles):
             for event in response.get("completion"):
                 chunk = event["chunk"]
                 completion += chunk["bytes"].decode()
-            print(completion)
-            print("===========================================")
+            finaloutput = finaloutput + completion + "\n"
+            
+    print(finaloutput)
+    print("===========================================")
 
             
     #with open('prompt.txt', 'r') as file:
