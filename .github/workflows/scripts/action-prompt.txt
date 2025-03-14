@@ -5,14 +5,20 @@ Steps:
 2. Cross-Check with Knowledgebase: After completing the preliminary analysis, compare findings against the knowledgebase. Integrate best practices and relevant insights from available sources.
 3. Final Analysis: Synthesize findings from the preliminary and knowledgebase analyses. Finalize the report to be comprehensive and actionable to the provided guidelines for consistency and accuracy.
 Rules:
-- Include this in the output - File name: <source-code-file-name>.
+- Provide separate suggestions for each source code file. Include this in the output - File name: actual source code file name.
 - Provide separate suggestions for each vulnerability on a new line.
 - Provide at least one web reference for each suggestion if possbile.
 Report Format:
 ```
 Suggestions:
-Filename: <source-code-file-name>
+Filename: actual source code file 1
 1. Suggestion for <key-1>: Suggestion details
 2. Suggestion for <key-2>: Suggestion details
 n. Suggestion for <key-n>: Suggestion details
+-------
+Filename: actual source code file 2
+1. Suggestion for <key-1>: Suggestion details
+2. Suggestion for <key-2>: Suggestion details
+n. Suggestion for <key-n>: Suggestion details
+
 ```
