@@ -80,6 +80,7 @@ def get_scan_results(sonar_token):
                 f.write(content + "\n")
             # Add source code
             f.write("Source Code:" + "\n")
+            f.write("Filename: " + filename + "\n")
             f.write("```\n")
             with open(filename, 'r') as file:
                 content = file.read()
