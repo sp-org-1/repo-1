@@ -46,7 +46,7 @@ def get_scan_results(sonar_token):
         'projects': 'sp-org-1_repo-1',
     }
     response = requests.get('https://sonarcloud.io/api/issues/search', params=params, headers=headers, auth=HTTPBasicAuth(username, password))
-    print(response.text)
+    #print(response.text)
     # Parse the JSON response
     jsonout = json.loads(response.text)
     issues = jsonout.get('issues', [])
@@ -99,10 +99,12 @@ def get_scan_results(sonar_token):
         f.write("------\n")
         f.close()
 
-    print(promptfiles)
-    #with open(promptfilename, 'r') as file:
-    #    content = file.read()
-    #    print(content)
+    #print(promptfiles)
+    for file in promptfiles:
+        print(file)
+        with open(file, 'r') as file:
+            content = file.read()
+            print(content)
     
     
 # Execution starts here
