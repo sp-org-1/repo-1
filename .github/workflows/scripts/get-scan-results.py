@@ -53,16 +53,11 @@ def get_scan_results(sonar_token):
     for issue in issues:
         if issue.get('status') == "CLOSED":
             continue
-        # Get vulnerability details
+            
+        # Get filename having vulnerabilities
         filename = issue.get('component').split(":")[1]
-        key = issue.get('key')
-        rule = issue.get('rule')
-        message = issue.get('message')
-        startline = issue.get('textRange').get('startLine')
-        endline = issue.get('textRange').get('endLine')  
-        startoffset = issue.get('textRange').get('startOffset')
-        endoffset = issue.get('textRange').get('endOffset')  
 
+        # Check if it is first issue, then add the prompt and source file contents
         promptfilename = filename + ".prompt"
         if os.path.exists(promptfilename):
             ## File exists, subsequent entry
@@ -82,16 +77,23 @@ def get_scan_results(sonar_token):
                 f.write(content + "\n")
             f.write("```\n")
             f.write("Vulnerability Details:\n")    
-        
+            
+        # Get vulnerability details
+        key = issue.get('key')
         f.write("key:" + key + "\n")
+        rule = issue.get('rule')
         f.write("rule:" + rule + "\n")
+        message = issue.get('message')
         f.write("message:" + message + "\n")
-        if(issue.get('textRange') == None):
-            continue
-        f.write("startline:" + str(startline) + "\n")
-        f.write("endline:" + str(endline) + "\n")
-        f.write("startoffset:" + str(startoffset) + "\n")
-        f.write("endoffset:" + str(endoffset) + "\n")
+        if(issue.get('textRange') != None):
+            startline = issue.get('textRange').get('startLine')
+            f.write("startline:" + str(startline) + "\n")
+            endline = issue.get('textRange').get('endLine')  
+            f.write("endline:" + str(endline) + "\n")
+            startoffset = issue.get('textRange').get('startOffset')
+            f.write("startoffset:" + str(startoffset) + "\n")
+            endoffset = issue.get('textRange').get('endOffset')  
+            f.write("endoffset:" + str(endoffset) + "\n")
         f.write("------\n")
         f.close()
     
