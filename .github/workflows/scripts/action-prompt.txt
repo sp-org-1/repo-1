@@ -6,5 +6,5 @@ Steps:
 3. Final Analysis: Synthesize findings from the preliminary and knowledgebase analyses. Finalize the report to be comprehensive and actionable to the provided guidelines for consistency and accuracy.
 Rules:
 - Provide separate suggestions for each source code file. Include this in the output - File name: actual source code file name.
-- Provide separate suggestions for each 'key' property from each vulnerability on a new line.
+- Provide separate suggestions for each 'key' property from each vulnerability on a new line. You combine the suggestions for same rules.
 - Provide at least one web reference for each suggestion if possbile.
