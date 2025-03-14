@@ -52,44 +52,57 @@ def get_scan_results(sonar_token):
     for issue in issues:
         if issue.get('status') == "CLOSED":
             continue
-        f = open("prompt.txt", "a")
-        with open(".github/workflows/scripts/action-prompt.txt", 'r') as file:
-            content = file.read()
-            f.write(content + "\n")
-        f.write("Vulnerability Details:\n")
-        f.write("```\n")
+        # Get vulnerability details
+        filename = issue.get('component').split(":")[1]
         key = issue.get('key')
-        f.write("key:" + key + "\n")
         rule = issue.get('rule')
-        f.write("rule:" + rule + "\n")
         message = issue.get('message')
+        startline = issue.get('textRange').get('startLine')
+        endline = issue.get('textRange').get('endLine')  
+        startoffset = issue.get('textRange').get('startOffset')
+        endoffset = issue.get('textRange').get('endOffset')  
+
+        promptfilename = filename + ".prompt"
+        if os.path.exists(promptfilename):
+            ## File exists, subsequent entry
+            f = open(promptfilename, "a")
+        else:
+            ## File does not exists, first entry
+            f = open(promptfilename, "a")
+            # Add prompt
+            with open(".github/workflows/scripts/action-prompt.txt", 'r') as file:
+                content = file.read()
+                f.write(content + "\n")
+            # Add source code
+            f.write("Source Code:" + "\n")
+            f.write("```\n")
+            with open(filename, 'r') as file:
+                content = file.read()
+                f.write(content + "\n")
+            f.write("```\n")
+            f.write("Vulnerability Details:\n")    
+        
+        f.write("key:" + key + "\n")
+        f.write("rule:" + rule + "\n")
         f.write("message:" + message + "\n")
         if(issue.get('textRange') == None):
             continue
-        startline = issue.get('textRange').get('startLine')
         f.write("startline:" + str(startline) + "\n")
-        endline = issue.get('textRange').get('endLine')  
         f.write("endline:" + str(endline) + "\n")
-        startoffset = issue.get('textRange').get('startOffset')
         f.write("startoffset:" + str(startoffset) + "\n")
-        endoffset = issue.get('textRange').get('endOffset')  
         f.write("endoffset:" + str(endoffset) + "\n")
-        f.write("```\n")
-        f.write("File Contents:" + "\n")
-        f.write("```\n")
-        filename = issue.get('component').split(":")[1]
-        with open(filename, 'r') as file:
-            content = file.read()
-            f.write(content + "\n")
-        f.write("```\n")
+        f.write("------\n")
         f.close()
     
-        with open("prompt.txt", 'r') as file:
-            content = file.read()
-            print(content)
-        
-        break
-
+        #with open(promptfilename, 'r') as file:
+        #    content = file.read()
+        #    print(content)
+    
+    current_directory = os.getcwd()    
+    files = os.listdir(current_directory)
+    for file in files:
+        print(file)
+    
 # Execution starts here
 get_scan_results(sys.argv[1])
-invoke_agent()
+#invoke_agent()
