@@ -50,6 +50,7 @@ def get_scan_results(sonar_token):
     # Parse the JSON response
     jsonout = json.loads(response.text)
     issues = jsonout.get('issues', [])
+    
     for issue in issues:
         if issue.get('status') == "CLOSED":
             continue
