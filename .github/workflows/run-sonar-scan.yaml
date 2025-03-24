@@ -24,7 +24,7 @@ jobs:
           role-to-assume: arn:aws:iam::291912718832:role/oidc-github-aws
           role-session-name: GitHub-To-AWS-OIDC
           aws-region: ${{ env.AWS_REGION }}
-      - name: Get Scan Results
-        run: |
-          python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }} ${{ secrets.GITHUB_TOKEN }} ${{ github.sha }}
+      #- name: Get Scan Results
+      #  run: |
+      #    python .github/workflows/scripts/get-scan-results.py ${{ secrets.SONAR_TOKEN }} ${{ secrets.GITHUB_TOKEN }} ${{ github.sha }}
           
