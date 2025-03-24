@@ -1,0 +1,31 @@
+[
+    {
+        "lang": "py",
+        "loc": "64",
+        "files": [
+            "sonarqube/get-scan-results.py",
+            "scripts/insecure.py"
+        ]
+    },
+    {
+        "lang": "java",
+        "loc": "73",
+        "files": [
+            "src/main/java/insecure.java"
+        ]
+    },
+    {
+        "lang": "xml",
+        "loc": "16",
+        "files": [
+            "octopus.config"
+        ]
+    },
+    {
+        "lang": "yaml",
+        "loc": "6",
+        "files": [
+            "templates/s3-bucket.yaml"
+        ]
+    }
+]
