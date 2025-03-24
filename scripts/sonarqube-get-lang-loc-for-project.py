@@ -56,6 +56,5 @@ def get_language_loc(sonar_token, project_name):
     return lang_loc_list
 
 # Execution starts here
-result = get_language_loc(sys.argv[1], sys.argv[2])
-print("Project: " + project_name)                
+result = get_language_loc(sys.argv[1], sys.argv[2])               
 print(json.dumps(result, indent=4))
