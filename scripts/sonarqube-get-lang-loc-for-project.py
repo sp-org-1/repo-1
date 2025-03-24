@@ -53,8 +53,9 @@ def get_language_loc(sonar_token, project_name):
                             # Language not present, append it
                             lang_loc_list.append({'lang':language, 'loc': str(component.get('measures')[0].get('value')), 'files': [file_name]})
                             break
-    print("Project: " + project_name)                
-    print(json.dumps(lang_loc_list))
+    return lang_loc_list
 
 # Execution starts here
-get_language_loc(sys.argv[1], sys.argv[2])
+result = get_language_loc(sys.argv[1], sys.argv[2])
+print("Project: " + project_name)                
+print(json.dumps(result, indent=4))
