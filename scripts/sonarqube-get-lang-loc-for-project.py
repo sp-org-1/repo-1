@@ -19,6 +19,7 @@ def get_language_loc(sonar_token, project_name):
     response = requests.get('https://sonarcloud.io/api/measures/component_tree', params=params, headers=headers, auth=HTTPBasicAuth(username, password))
     
     lang_loc_list = []
+    lang_loc_map = {}
     # Parse the JSON response
     jsonout = json.loads(response.text)
     components = jsonout.get('components', [])
@@ -47,8 +48,11 @@ def get_language_loc(sonar_token, project_name):
                     # Language not present, append it
                     lang_loc_list.append({'lang':language, 'loc': str(component.get('measures')[0].get('value')), 'files': [file_name]})
                     break
+    # Form final map
+    lang_loc_map['project'] = project_name
+    lang_loc_map['ncloc'] = lang_loc_list
 
-    return lang_loc_list
+    return lang_loc_map
 
 # Execution starts here
 result = get_language_loc(sys.argv[1], sys.argv[2])               
