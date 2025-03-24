@@ -12,3 +12,6 @@ def get_user(username):
 username_input = input("Enter username: ")
 user_data = get_user(username_input)
 print(user_data)
+
+# Test comment
+# Test comment1
