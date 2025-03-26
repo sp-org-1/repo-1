@@ -3,57 +3,69 @@ import sys
 import json
 from requests.auth import HTTPBasicAuth
 
-def get_language_loc(sonar_token, project_name):
-    # Set Sonarqibe creds
+def get_language_loc(sonar_token, project_name, api_url="https://sonarcloud.io/api/measures/component_tree"):
+    """
+    Fetches the language-wise LOC (Lines of Code) for a given project from SonarQube.
+    """
+    # Set SonarQube credentials
     username = sonar_token
     password = ""
+
     # Set headers and params
-    headers = {
-        'Accept': 'application/json',
-    }
-    params = {
-        'component': project_name,
-        'metricKeys': 'ncloc',
-    }
-    # Make a GET request to Sonarqube API
-    response = requests.get('https://sonarcloud.io/api/measures/component_tree', params=params, headers=headers, auth=HTTPBasicAuth(username, password))
-    
-    lang_loc_list = []
-    lang_loc_map = {}
+    headers = {'Accept': 'application/json'}
+    params = {'component': project_name, 'metricKeys': 'ncloc'}
+
+    try:
+        # Make a GET request to SonarQube API
+        response = requests.get(api_url, params=params, headers=headers, auth=HTTPBasicAuth(username, password))
+        response.raise_for_status()  # Raise an exception for HTTP errors
+    except requests.exceptions.RequestException as e:
+        print(f"Error: Failed to fetch data from SonarQube API - {e}")
+        sys.exit(1)
+
     # Parse the JSON response
-    jsonout = json.loads(response.text)
-    components = jsonout.get('components', [])
-    for component in components:
-        language = component.get('language')
-        # Skip directory type components
+    try:
+        jsonout = response.json()
+        print(json.dumps(jsonout))
+    except json.JSONDecodeError:
+        print("Error: Failed to parse JSON response from SonarQube API")
+        sys.exit(1)
+
+    # Process components
+    lang_loc_map = {'project': project_name, 'ncloc': []}
+    lang_loc_dict = {}
+
+    for component in jsonout.get('components', []):
         if component.get('qualifier') == "DIR":
-            continue
-        # Skip components with no measures, the file failed to scan
-        if len(component.get('measures')) == 0:
-            continue
-        
-        file_name = component.get('path')
-        if(len(lang_loc_list))  == 0:
-            # This is the first entry in list
-            lang_loc_list.append({'lang':language, 'loc': str(component.get('measures')[0].get('value')), 'files': [file_name]})
-        else:
-            # Existing entries available, see if the language is already present
-            for entry in lang_loc_list:
-                if entry['lang'] == language:
-                    # Language already present, update LOC and files list
-                    entry['loc'] = str(int(entry['loc']) + int(component.get('measures')[0].get('value')))
-                    entry['files'].append(file_name)
-                    break
-                else:
-                    # Language not present, append it
-                    lang_loc_list.append({'lang':language, 'loc': str(component.get('measures')[0].get('value')), 'files': [file_name]})
-                    break
-    # Form final map
-    lang_loc_map['project'] = project_name
-    lang_loc_map['ncloc'] = lang_loc_list
+            continue  # Skip directory components
+
+        measures = component.get('measures', [])
+        if not measures:
+            continue  # Skip components with no measures
+
+        language = component.get('language', 'unknown')
+        loc = int(measures[0].get('value', 0))
+        file_name = component.get('path', 'unknown')
+
+        if language not in lang_loc_dict:
+            lang_loc_dict[language] = {'loc': 0, 'files': []}
+
+        lang_loc_dict[language]['loc'] += loc
+        lang_loc_dict[language]['files'].append(file_name)
+
+    # Convert dictionary to list format
+    for lang, data in lang_loc_dict.items():
+        lang_loc_map['ncloc'].append({'lang': lang, 'loc': str(data['loc']), 'files': data['files']})
 
     return lang_loc_map
 
 # Execution starts here
-result = get_language_loc(sys.argv[1], sys.argv[2])               
-print(json.dumps(result, indent=4))
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python sonarqube-get-lang-loc-for-project.py <sonar_token> <project_name>")
+        sys.exit(1)
+
+    sonar_token = sys.argv[1]
+    project_name = sys.argv[2]
+    result = get_language_loc(sonar_token, project_name)
+    print(json.dumps(result, indent=4))
