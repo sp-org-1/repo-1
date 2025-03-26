@@ -1,0 +1,28 @@
+name: PS-Encrypt-Decrypt
+on:
+  workflow_dispatch:
+jobs:
+  job1:
+    runs-on: windows-latest
+    steps:
+      - name: Run1
+        run: |
+          $encKey = "${{ secrets.ENCR_KEY }}"
+          # converting string to bytes array
+          $bytesArr = [System.Text.Encoding]::UTF8.GetBytes($encKey)
+          # Print the bytes array
+          $bytesArr
+          # Convert byte to string
+          #$bytesArr = @(56, 34, 239, 191, 189, 42, 54, 33, 239, 191, 189, 34, 35, 43)
+          
+          $text = "Hello, this is a secret message"
+          $secureString = ConvertTo-SecureString $text -AsPlainText -Force
+          Write-Output $secureString
+          $encryptedText = ConvertFrom-SecureString $secureString -Key $bytesArr
+          Write-Output $encryptedText
+          
+          $secureString = ConvertTo-SecureString $encryptedText -Key $bytesArr
+          $plainText = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto(
+              [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureString)
+          )
+          Write-Output $plainText
