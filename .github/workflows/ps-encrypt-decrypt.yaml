@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Run1
         run: |
-          $encKey = ${{ secrets.ENCR_KEY }}
+          $encKey = "${{ secrets.ENCR_KEY }}"
           # converting string to bytes array
           $bytesArr = [System.Text.Encoding]::UTF8.GetBytes($encKey)
           # Print the bytes array
